@@ -5,3 +5,4 @@ out/jumota/video_*.mp4
 out/jumota/hits.json
 jumota/audio/*.wav
 jumota/audio/vo/*.wav
+out/jumota/*/
