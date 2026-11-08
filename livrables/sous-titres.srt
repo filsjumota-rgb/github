@@ -1,0 +1,368 @@
+1
+00:00:00,500 --> 00:00:02,901
+Tu souhaites créer des
+vidéos professionnelles,
+
+2
+00:00:02,901 --> 00:00:04,780
+mais tu ne sais pas comment
+organiser ton montage ?
+
+3
+00:00:04,780 --> 00:00:06,530
+Et si je te disais que Claude,
+
+4
+00:00:06,530 --> 00:00:09,270
+l'intelligence artificielle d'Anthropic,
+
+5
+00:00:09,270 --> 00:00:11,160
+pouvait devenir ton assistant
+de production vidéo ?
+
+6
+00:00:11,160 --> 00:00:13,330
+Dans cette vidéo,
+
+7
+00:00:13,330 --> 00:00:15,169
+découvre 8 astuces pour exploiter Claude
+
+8
+00:00:15,169 --> 00:00:17,200
+et améliorer considérablement
+tes créations.
+
+9
+00:00:18,700 --> 00:00:19,570
+Première astuce :
+
+10
+00:00:19,570 --> 00:00:22,310
+utilise Claude pour
+écrire tes scripts vidéo.
+
+11
+00:00:22,310 --> 00:00:23,765
+Explique-lui ton sujet,
+
+12
+00:00:23,765 --> 00:00:25,800
+ton public cible et la durée souhaitée.
+
+13
+00:00:25,800 --> 00:00:27,520
+Il peut te proposer une
+accroche captivante,
+
+14
+00:00:27,520 --> 00:00:31,370
+un développement structuré et une
+conclusion avec un appel à l'action.
+
+15
+00:00:31,370 --> 00:00:35,130
+Tu obtiens ainsi une base solide
+avant même de commencer le montage.
+
+16
+00:00:36,700 --> 00:00:37,655
+Deuxième astuce :
+
+17
+00:00:37,655 --> 00:00:40,215
+transforme ton script en storyboard.
+
+18
+00:00:40,215 --> 00:00:43,695
+Demande à Claude de découper ton
+contenu en différentes scènes.
+
+19
+00:00:43,695 --> 00:00:44,486
+Pour chacune,
+
+20
+00:00:44,486 --> 00:00:47,350
+il peut préciser les images à utiliser,
+
+21
+00:00:47,350 --> 00:00:48,365
+les animations,
+
+22
+00:00:48,365 --> 00:00:49,450
+les transitions et la durée.
+
+23
+00:00:49,450 --> 00:00:50,385
+Résultat :
+
+24
+00:00:50,385 --> 00:00:53,870
+tu sais exactement quoi afficher
+à chaque moment de ta vidéo.
+
+25
+00:00:55,700 --> 00:00:56,665
+Troisième astuce :
+
+26
+00:00:56,665 --> 00:01:00,790
+demande à Claude de te proposer des
+animations adaptées à chaque scène.
+
+27
+00:01:00,790 --> 00:01:02,020
+Apparition des textes,
+
+28
+00:01:02,020 --> 00:01:03,433
+mouvements des icônes,
+
+29
+00:01:03,433 --> 00:01:04,545
+zooms,
+
+30
+00:01:04,545 --> 00:01:06,080
+transitions et effets visuels.
+
+31
+00:01:06,080 --> 00:01:08,210
+Il peut même te préciser comment réaliser
+
+32
+00:01:08,210 --> 00:01:10,495
+ces animations dans ton
+logiciel de montage.
+
+33
+00:01:10,495 --> 00:01:11,440
+Ton objectif :
+
+34
+00:01:11,440 --> 00:01:14,340
+rendre chaque scène plus
+dynamique et captivante.
+
+35
+00:01:15,700 --> 00:01:16,760
+Quatrième astuce :
+
+36
+00:01:16,760 --> 00:01:21,355
+utilise Claude pour créer des prompts
+d'images avec l'intelligence artificielle.
+
+37
+00:01:21,355 --> 00:01:24,427
+Tu peux lui demander de
+décrire précisément un robot,
+
+38
+00:01:24,427 --> 00:01:25,236
+un ordinateur,
+
+39
+00:01:25,236 --> 00:01:28,530
+un entrepreneur ou un
+environnement technologique.
+
+40
+00:01:28,530 --> 00:01:29,230
+Ensuite,
+
+41
+00:01:29,230 --> 00:01:32,041
+utilise ces prompts dans tes
+générateurs d'images pour
+
+42
+00:01:32,041 --> 00:01:34,690
+obtenir des illustrations
+adaptées à ton projet.
+
+43
+00:01:36,700 --> 00:01:37,615
+Cinquième astuce :
+
+44
+00:01:37,615 --> 00:01:39,920
+prépare ta voix off avec Claude.
+
+45
+00:01:39,920 --> 00:01:41,414
+Demande-lui d'ajouter des pauses,
+
+46
+00:01:41,414 --> 00:01:45,505
+des intonations et des indications
+pour accentuer certains mots.
+
+47
+00:01:45,505 --> 00:01:49,915
+Tu peux ensuite utiliser un outil de synthèse
+vocale ou enregistrer ta propre voix.
+
+48
+00:01:49,915 --> 00:01:53,830
+Une narration bien préparée rend
+ton contenu plus agréable à écouter.
+
+49
+00:01:55,700 --> 00:01:56,590
+Sixième astuce :
+
+50
+00:01:56,590 --> 00:01:58,925
+demande à Claude de
+préparer tes sous-titres.
+
+51
+00:01:58,925 --> 00:02:03,175
+Il peut organiser ton texte en phrases
+courtes et créer un fichier SRT
+
+52
+00:02:03,175 --> 00:02:05,990
+que tu pourras importer dans
+ton logiciel de montage.
+
+53
+00:02:05,990 --> 00:02:08,935
+N'oublie pas de vérifier la
+synchronisation avec ta voix off.
+
+54
+00:02:08,935 --> 00:02:12,330
+Tes vidéos seront ainsi plus
+accessibles et faciles à suivre.
+
+55
+00:02:13,700 --> 00:02:14,585
+Septième astuce :
+
+56
+00:02:14,585 --> 00:02:16,971
+exploite les capacités
+de Claude pour générer
+
+57
+00:02:16,971 --> 00:02:19,250
+du code permettant de
+créer des animations.
+
+58
+00:02:19,250 --> 00:02:21,940
+Tu peux lui demander de
+réaliser des compteurs,
+
+59
+00:02:21,940 --> 00:02:23,430
+des graphiques animés,
+
+60
+00:02:23,430 --> 00:02:26,215
+des titres dynamiques ou des
+présentations interactives.
+
+61
+00:02:26,215 --> 00:02:27,520
+Avec les bons outils,
+
+62
+00:02:27,520 --> 00:02:31,080
+tu peux transformer ces créations
+en éléments visuels pour tes vidéos.
+
+63
+00:02:32,700 --> 00:02:33,705
+Huitième astuce :
+
+64
+00:02:33,705 --> 00:02:36,030
+utilise Claude comme
+conseiller artistique.
+
+65
+00:02:36,030 --> 00:02:39,407
+Présente-lui ton storyboard
+ou les éléments de ton montage
+
+66
+00:02:39,407 --> 00:02:42,435
+et demande-lui d'identifier
+les points à améliorer :
+
+67
+00:02:42,435 --> 00:02:42,921
+rythme,
+
+68
+00:02:42,921 --> 00:02:44,126
+cohérence des scènes,
+
+69
+00:02:44,126 --> 00:02:44,643
+couleurs,
+
+70
+00:02:44,643 --> 00:02:46,290
+lisibilité des textes et transitions.
+
+71
+00:02:46,290 --> 00:02:50,650
+Tu pourras ainsi corriger les
+imperfections avant la publication.
+
+72
+00:02:52,700 --> 00:02:57,125
+Tu viens de découvrir 8 astuces pour
+utiliser Claude dans ta production vidéo.
+
+73
+00:02:57,125 --> 00:02:58,175
+Mais rappelle-toi :
+
+74
+00:02:58,175 --> 00:03:01,990
+l'intelligence artificielle
+ne remplace pas ta créativité,
+
+75
+00:03:01,990 --> 00:03:03,570
+elle te permet de la développer.
+
+76
+00:03:03,570 --> 00:03:08,120
+Si tu souhaites apprendre davantage
+sur l'intelligence artificielle,
+
+77
+00:03:08,120 --> 00:03:11,250
+le marketing digital et
+la création de contenu,
+
+78
+00:03:11,250 --> 00:03:12,116
+abonne-toi à Jumota Agency.
+
+79
+00:03:12,116 --> 00:03:12,466
+Ici,
+
+80
+00:03:12,466 --> 00:03:15,505
+nous apprenons à maîtriser les
+outils du digital pour créer,
+
+81
+00:03:15,505 --> 00:03:17,265
+innover et entreprendre.
+
+82
+00:03:17,265 --> 00:03:18,270
+À très bientôt !
+
