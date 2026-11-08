@@ -1,0 +1,7 @@
+node_modules/
+out/jumota/stills/
+out/jumota/*.png
+out/jumota/video_*.mp4
+out/jumota/hits.json
+jumota/audio/*.wav
+jumota/audio/vo/*.wav
