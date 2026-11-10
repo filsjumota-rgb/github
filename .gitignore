@@ -6,3 +6,9 @@ out/jumota/hits.json
 jumota/audio/*.wav
 jumota/audio/vo/*.wav
 out/jumota/*/
+facebook/audio/*.wav
+facebook/audio/vo/*.wav
+out/facebook/stills/
+out/facebook/video_*.mp4
+out/facebook/hits.json
+out/facebook/*/
