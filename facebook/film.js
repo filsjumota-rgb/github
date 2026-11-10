@@ -102,6 +102,31 @@ function wrapLines(ctx, str, f, maxW) {
   words.forEach((w) => { const t = cur ? cur + ' ' + w : w; if (measure(ctx, t, f) > maxW && cur) { out.push(cur); cur = w; } else cur = t; });
   if (cur) out.push(cur); return out;
 }
+// Jumota brand icon (the J play button from the brand banner), height h, left edge x, centred on y.
+let LOGO = null;
+function brandIcon(ctx, x, y, h) {
+  if (!LOGO) { rrect(ctx, x, y - h / 2, h, h, h * 0.23); ctx.fillStyle = C.cyan; ctx.fill(); txt(ctx, 'J', x + h / 2, y + h * 0.33, font(h * 0.78, 800, DISPLAY), C.bg0, 'center'); return h; }
+  const w = LOGO.width / LOGO.height * h; ctx.drawImage(LOGO, x, y - h / 2, w, h); return w;
+}
+// Official lockup, adapted to the dark background: icon + "Jumota" (white) over "Agency" (brand blue).
+const BRAND_BLUE = '#2196F3';
+function brandLockup(ctx, x, cy, h, align = 'left') {   // horizontal: icon left, words stacked right
+  const fj = font(h * 0.5, 800, DISPLAY), fa = font(h * 0.4, 800, DISPLAY);
+  const iw = LOGO ? LOGO.width / LOGO.height * h : h, gap = h * 0.12;
+  const tw = Math.max(measure(ctx, 'Jumota', fj, -h * 0.01), measure(ctx, 'Agency', fa, -h * 0.005));
+  const x0 = align === 'center' ? x - (iw + gap + tw) / 2 : x;
+  brandIcon(ctx, x0, cy, h);
+  txt(ctx, 'Jumota', x0 + iw + gap, cy - h * 0.02, fj, C.ink, 'left', -h * 0.01);
+  txt(ctx, 'Agency', x0 + iw + gap, cy + h * 0.4, fa, BRAND_BLUE, 'left', -h * 0.005);
+  return iw + gap + tw;
+}
+function brandStack(ctx, cx, top, h) {   // vertical, like the logo file: icon above, words below
+  const iw = LOGO ? LOGO.width / LOGO.height * h : h;
+  brandIcon(ctx, cx - iw / 2, top + h / 2, h);
+  txt(ctx, 'Jumota', cx, top + h * 1.62, font(h * 0.58, 800, DISPLAY), C.ink, 'center', -h * 0.012);
+  txt(ctx, 'Agency', cx, top + h * 2.1, font(h * 0.46, 800, DISPLAY), BRAND_BLUE, 'center', -h * 0.006);
+  return h * 2.2;
+}
 const fmtN = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 // ------------------------------------------------------------------ icons (stylised pictograms, never official logos)
@@ -595,10 +620,7 @@ function illCanva(ctx, lt, S, B) {
     const kl = sp(lt, ph(S, 10) + 0.9, SPRING.bouncy);
     if (kl > 0) {
       ctx.save(); scaleAt(ctx, kl, X0 + 330, Y0 + 400);
-      rrect(ctx, X0 + 30, Y0 + 330, 140, 140, 32); ctx.fillStyle = C.cyan; ctx.fill();
-      txt(ctx, 'J', X0 + 100, Y0 + 440, font(100, 800, DISPLAY), C.bg0, 'center');
-      txt(ctx, 'JUMOTA', X0 + 200, Y0 + 405, font(60, 800, DISPLAY), C.ink, 'left', -1);
-      txt(ctx, 'AGENCY', X0 + 204, Y0 + 445, font(24, 700, UI), C.cyan, 'left', 12);
+      brandLockup(ctx, X0 + 24, Y0 + 400, 140);
       ctx.restore();
     }
     ctx.restore();
@@ -1203,27 +1225,18 @@ function sceneEnd(ctx, lt, S, IMG) {
   // 5) end card
   if (lt > ph(S, 13) - 0.4) {
     const t13 = ph(S, 13);
-    const lk = sp(lt, t13, SPRING.bouncy), ly = P ? 560 : 300, ls = P ? 1.15 : 1;
+    const lk = sp(lt, t13, SPRING.bouncy), ly = P ? 560 : 300;
     const endK = io(lt, ph(S, 14) - 0.2, 0.3);   // the topics clear before the full card settles
     void endK;
-    if (IMG.logo) {
-      const im = IMG.logo, h = 220 * ls, w = (im.width / im.height) * h;
-      ctx.save(); scaleAt(ctx, lk, cx, ly); ctx.globalAlpha *= clamp(lk); ctx.drawImage(im, cx - w / 2, ly - h / 2, w, h); ctx.restore();
-    } else {
-      ctx.save(); ctx.translate(cx, ly); ctx.scale(lk * ls, lk * ls); ctx.globalAlpha *= clamp(lk);
-      rrect(ctx, -330, -70, 140, 140, 32); ctx.fillStyle = C.cyan; ctx.fill();
-      txt(ctx, 'J', -260, 46, font(110, 800, DISPLAY), C.bg0, 'center');
-      txt(ctx, 'JUMOTA', -160, 18, font(96, 800, DISPLAY), C.ink, 'left', -2);
-      txt(ctx, 'AGENCY', -156, 62, font(30, 700, UI), C.cyan, 'left', 14);
-      ctx.restore();
-    }
+    ctx.save(); ctx.translate(cx, ly); ctx.scale(lk, lk); ctx.globalAlpha *= clamp(lk);
+    if (P) brandStack(ctx, 0, -250, 200); else brandLockup(ctx, 0, -10, 190, 'center');
+    ctx.restore();
     alpha(ctx, io(lt, ph(S, 15), 0.5), () => {
-      if (P) { txt(ctx, 'APPRENDRE · CRÉER', cx, ly + 190, font(34, 700, UI), C.mute, 'center', 7); txt(ctx, 'DÉVELOPPER', cx, ly + 240, font(34, 700, UI), C.mute, 'center', 7); }
-      else txt(ctx, 'APPRENDRE · CRÉER · DÉVELOPPER', cx, ly + 180, font(32, 700, UI), C.mute, 'center', 8);
+      txt(ctx, 'APPRENDRE · CRÉER · RÉUSSIR', cx, ly + (P ? 270 : 180), font(P ? 34 : 32, 700, UI), C.mute, 'center', P ? 6 : 8);
     });
     const bk = sp(lt, t13 + 0.5, SPRING.bouncy);
     if (bk > 0) {
-      const by = P ? 980 : 620;
+      const by = P ? 1030 : 620;
       const pulse = 1 + 0.03 * Math.max(0, Math.sin((lt - t13) * 3.2)) * io(lt, t13 + 1.5, 0.5);
       ctx.save(); ctx.translate(cx, by); ctx.scale(bk * pulse, bk * pulse);
       const label = 'ABONNE-TOI À JUMOTA AGENCY', fsz = fit(ctx, label, 42, P ? 800 : 820);
@@ -1235,19 +1248,20 @@ function sceneEnd(ctx, lt, S, IMG) {
     icons.forEach(([lab, fn], i) => {
       const ik = sp(lt, t13 + 0.9 + i * 0.15, SPRING.bouncy);
       if (ik <= 0) return;
-      const x = cx + (i - 1.5) * (P ? 230 : 240), y = P ? 1200 : 800;
+      const x = cx + (i - 1.5) * (P ? 230 : 240), y = P ? 1220 : 800;
       ctx.save(); ctx.translate(x, y); ctx.scale(ik, ik);
       ctx.beginPath(); ctx.arc(0, 0, 54, 0, M.TAU); ctx.fillStyle = C.panel2; ctx.fill(); ctx.strokeStyle = C.line; ctx.lineWidth = 2; ctx.stroke();
       fn(ctx, 0, 0, 24, C.ink, C.panel2);
       txt(ctx, lab, 0, 100, font(24, 700, UI), C.ink, 'center');
       ctx.restore();
     });
-    alpha(ctx, io(lt, ph(S, 16), 0.5), () => txt(ctx, 'À TRÈS BIENTÔT !', cx, P ? 1400 : 960, font(P ? 48 : 40, 800, DISPLAY), C.cyan, 'center', 2));
+    alpha(ctx, io(lt, ph(S, 16), 0.5), () => txt(ctx, 'À TRÈS BIENTÔT !', cx, P ? 1420 : 960, font(P ? 48 : 40, 800, DISPLAY), C.cyan, 'center', 2));
   }
 }
 
 // ------------------------------------------------------------------ captions (burned in, from the SRT)
 function captions(ctx, t) {
+  if (t > SC[9].phrases[16].t0 - 0.1) return;   // the end card already says "À très bientôt !"
   const c = TL.captions.find(([a, b]) => t >= a && t < b);
   if (!c) return;
   const [a, b, str] = c;
@@ -1302,8 +1316,7 @@ function drawThumb(ctx) {
   const g = ctx.createRadialGradient(1440, 520, 0, 1440, 520, 700); g.addColorStop(0, 'rgba(0,217,255,0.28)'); g.addColorStop(1, 'rgba(0,217,255,0)');
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
   // logo
-  rrect(ctx, 90, 70, 84, 84, 20); ctx.fillStyle = C.cyan; ctx.fill(); txt(ctx, 'J', 132, 140, font(66, 800, DISPLAY), C.bg0, 'center');
-  txt(ctx, 'JUMOTA', 196, 112, font(48, 800, DISPLAY), C.ink, 'left', -1); txt(ctx, 'AGENCY', 199, 146, font(22, 700, UI), C.cyan, 'left', 10);
+  brandLockup(ctx, 84, 112, 104);
   // title
   const L = [['AUTOMATISE', C.ink, 150], ['TA PAGE', C.ink, 150], ['FACEBOOK', C.ink, 150], ["AVEC L'IA", C.cyan, 150]];
   L.forEach(([l, col, sz], i) => txt(ctx, l, 84, 330 + i * 150, font(fit(ctx, l, sz, 960), 800, DISPLAY), col, 'left', -4));
@@ -1369,11 +1382,10 @@ TOOLS.forEach((_, k) => HITS.push([B2U(at(9, 3 + k)), `recap ${k}`, 'pop', { pit
 HITS.push([B2U(at(9, 13)), 'end card', 'impact']);
 HITS.push([B2U(at(9, 13, 0.5)), 'subscribe', 'bell', { pitch: 'D6' }]);
 
-const fs = await fetch('assets/logo.png', { method: 'HEAD' }).then((r) => r.ok).catch(() => false);
 M.film({
   fonts: [font(100, 800, DISPLAY), font(40, 500, UI), font(40, 700, UI)],
-  images: fs ? { logo: 'assets/logo.png' } : {},
+  images: { icon: 'assets/logo_icon.png' },
   hits: HITS,
   samples: 4,
-  draw(ctx, u, t, IMG) { if (THUMB) { drawThumb(ctx); return; } draw(ctx, t, IMG); captions(ctx, t); },
+  draw(ctx, u, t, IMG) { LOGO = IMG.icon || null; if (THUMB) { drawThumb(ctx); return; } draw(ctx, t, IMG); captions(ctx, t); },
 });
