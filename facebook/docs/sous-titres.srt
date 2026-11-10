@@ -1,0 +1,734 @@
+1
+00:00:00,500 --> 00:00:04,305
+Imagine que tu possèdes une page Facebook
+et que tu dois publier chaque jour,
+
+2
+00:00:04,305 --> 00:00:05,716
+répondre aux messages,
+
+3
+00:00:05,716 --> 00:00:06,927
+gérer les commentaires,
+
+4
+00:00:06,927 --> 00:00:09,925
+rechercher de nouveaux clients
+et analyser tes statistiques.
+
+5
+00:00:09,925 --> 00:00:12,445
+Cela peut rapidement devenir épuisant !
+
+6
+00:00:12,445 --> 00:00:15,008
+Mais imagine maintenant
+que certaines de ces tâches
+
+7
+00:00:15,008 --> 00:00:18,525
+soient effectuées automatiquement
+grâce à l'intelligence artificielle.
+
+8
+00:00:18,525 --> 00:00:20,989
+Et si je te disais que
+tu peux mettre en place
+
+9
+00:00:20,989 --> 00:00:24,471
+un véritable système capable de
+travailler pour ta page Facebook,
+
+10
+00:00:24,471 --> 00:00:26,115
+même lorsque tu n'es pas connecté ?
+
+11
+00:00:26,115 --> 00:00:27,230
+Dans cette vidéo,
+
+12
+00:00:27,230 --> 00:00:31,090
+nous allons découvrir comment
+automatiser une page Facebook de A à Z,
+
+13
+00:00:31,090 --> 00:00:33,840
+avec les meilleurs outils
+d'intelligence artificielle.
+
+14
+00:00:35,700 --> 00:00:36,755
+Avant de commencer,
+
+15
+00:00:36,755 --> 00:00:39,295
+comprenons ce qu'est
+réellement l'automatisation.
+
+16
+00:00:39,295 --> 00:00:41,970
+Automatiser une page
+Facebook consiste à utiliser
+
+17
+00:00:41,970 --> 00:00:45,081
+des outils numériques et
+l'intelligence artificielle pour
+
+18
+00:00:45,081 --> 00:00:48,575
+exécuter certaines tâches sans
+intervention manuelle permanente.
+
+19
+00:00:48,575 --> 00:00:49,530
+Par exemple :
+
+20
+00:00:49,530 --> 00:00:50,410
+premièrement,
+
+21
+00:00:50,410 --> 00:00:52,650
+préparer automatiquement des publications.
+
+22
+00:00:52,650 --> 00:00:53,035
+Deuxièmement,
+
+23
+00:00:53,035 --> 00:00:55,040
+programmer leur diffusion.
+
+24
+00:00:55,040 --> 00:00:55,454
+Troisièmement,
+
+25
+00:00:55,454 --> 00:00:58,210
+répondre aux questions
+fréquentes des visiteurs.
+
+26
+00:00:58,210 --> 00:00:59,190
+Quatrièmement,
+
+27
+00:00:59,190 --> 00:01:01,005
+organiser les demandes des prospects.
+
+28
+00:01:01,005 --> 00:01:01,765
+Et enfin,
+
+29
+00:01:01,765 --> 00:01:03,795
+analyser les performances de la page.
+
+30
+00:01:03,795 --> 00:01:06,530
+L'objectif n'est pas de remplacer
+totalement l'être humain,
+
+31
+00:01:06,530 --> 00:01:09,540
+mais de réduire les tâches
+répétitives et de gagner du temps.
+
+32
+00:01:10,700 --> 00:01:14,190
+La première étape consiste à préparer
+correctement ta page Facebook.
+
+33
+00:01:14,190 --> 00:01:17,590
+Si tu n'as pas encore
+de page professionnelle,
+
+34
+00:01:17,590 --> 00:01:18,360
+commence par en créer une.
+
+35
+00:01:18,360 --> 00:01:20,173
+Ajoute ensuite un nom professionnel,
+
+36
+00:01:20,173 --> 00:01:21,250
+une photo de profil,
+
+37
+00:01:21,250 --> 00:01:22,480
+une couverture attractive,
+
+38
+00:01:22,480 --> 00:01:24,590
+une description claire de ton activité,
+
+39
+00:01:24,590 --> 00:01:25,545
+tes coordonnées,
+
+40
+00:01:25,545 --> 00:01:28,130
+et un bouton d'action
+adapté à ton objectif.
+
+41
+00:01:28,130 --> 00:01:28,480
+Ensuite,
+
+42
+00:01:28,480 --> 00:01:31,230
+connecte ta page à Meta Business Suite.
+
+43
+00:01:31,230 --> 00:01:34,329
+C'est l'outil officiel de Meta qui
+te permet de gérer tes publications,
+
+44
+00:01:34,329 --> 00:01:37,010
+tes messages et les
+statistiques de ta page.
+
+45
+00:01:37,010 --> 00:01:38,738
+Cette étape est indispensable pour
+
+46
+00:01:38,738 --> 00:01:41,530
+organiser correctement ton
+système d'automatisation.
+
+47
+00:01:42,700 --> 00:01:44,935
+Passons maintenant à la
+création de contenus.
+
+48
+00:01:44,935 --> 00:01:48,645
+Tu n'as plus besoin de passer des heures
+à chercher des idées de publications.
+
+49
+00:01:48,645 --> 00:01:50,030
+Avec ChatGPT,
+
+50
+00:01:50,030 --> 00:01:51,431
+tu peux générer des idées,
+
+51
+00:01:51,431 --> 00:01:53,195
+rédiger des textes publicitaires,
+
+52
+00:01:53,195 --> 00:01:56,790
+préparer des scripts vidéo et
+créer un calendrier éditorial.
+
+53
+00:01:56,790 --> 00:01:57,146
+Par exemple,
+
+54
+00:01:57,146 --> 00:01:59,045
+tu peux simplement écrire :
+
+55
+00:01:59,045 --> 00:02:02,555
+propose-moi trente idées de publications
+Facebook pour mon entreprise,
+
+56
+00:02:02,555 --> 00:02:03,665
+avec un titre accrocheur,
+
+57
+00:02:03,665 --> 00:02:06,310
+un texte éducatif et un appel à l'action.
+
+58
+00:02:06,310 --> 00:02:07,006
+En quelques instants,
+
+59
+00:02:07,006 --> 00:02:11,485
+tu disposes d'une base de contenus que tu
+peux corriger et adapter à ton audience.
+
+60
+00:02:11,485 --> 00:02:12,315
+Attention :
+
+61
+00:02:12,315 --> 00:02:13,940
+ChatGPT prépare les contenus.
+
+62
+00:02:13,940 --> 00:02:15,414
+Pour leur publication automatique,
+
+63
+00:02:15,414 --> 00:02:18,420
+il faudra ensuite utiliser
+un outil de programmation.
+
+64
+00:02:19,700 --> 00:02:22,855
+Une bonne publication ne repose
+pas uniquement sur le texte.
+
+65
+00:02:22,855 --> 00:02:26,660
+Elle doit également attirer l'attention
+grâce à un visuel professionnel.
+
+66
+00:02:26,660 --> 00:02:27,281
+Pour cela,
+
+67
+00:02:27,281 --> 00:02:28,930
+nous allons utiliser Canva.
+
+68
+00:02:28,930 --> 00:02:30,591
+Canva permet de créer des affiches,
+
+69
+00:02:30,591 --> 00:02:31,392
+des carrousels,
+
+70
+00:02:31,392 --> 00:02:34,600
+des couvertures Facebook et
+des visuels publicitaires.
+
+71
+00:02:34,600 --> 00:02:37,048
+Tu peux partir de modèles
+existants ou utiliser
+
+72
+00:02:37,048 --> 00:02:40,955
+ses fonctionnalités d'intelligence
+artificielle pour accélérer la création.
+
+73
+00:02:40,955 --> 00:02:42,816
+Prépare plusieurs visuels à l'avance,
+
+74
+00:02:42,816 --> 00:02:44,820
+en respectant ton identité graphique,
+
+75
+00:02:44,820 --> 00:02:46,270
+tes couleurs et ton logo.
+
+76
+00:02:46,270 --> 00:02:50,120
+Tu disposeras ainsi d'une bibliothèque
+de contenus prête à être publiée.
+
+77
+00:02:51,700 --> 00:02:54,399
+Maintenant que tes textes
+et tes visuels sont prêts,
+
+78
+00:02:54,399 --> 00:02:55,520
+passons à la programmation.
+
+79
+00:02:55,520 --> 00:02:57,150
+Ouvre Meta Business Suite,
+
+80
+00:02:57,150 --> 00:02:59,520
+et rends-toi dans la
+section Planificateur.
+
+81
+00:02:59,520 --> 00:03:02,185
+Sélectionne une date et
+une heure de publication.
+
+82
+00:03:02,185 --> 00:03:02,807
+Ajoute ton texte,
+
+83
+00:03:02,807 --> 00:03:04,845
+ton image ou ta vidéo,
+
+84
+00:03:04,845 --> 00:03:05,644
+puis programme la diffusion.
+
+85
+00:03:05,644 --> 00:03:08,412
+Tu peux ainsi organiser tes
+contenus du lundi au dimanche,
+
+86
+00:03:08,412 --> 00:03:12,250
+et laisser Meta Business Suite
+les publier aux dates prévues.
+
+87
+00:03:12,250 --> 00:03:15,280
+Tu n'auras plus besoin de publier
+manuellement chaque contenu.
+
+88
+00:03:15,280 --> 00:03:17,528
+Attention toutefois à
+vérifier régulièrement que
+
+89
+00:03:17,528 --> 00:03:19,410
+tes publications sont bien diffusées.
+
+90
+00:03:20,700 --> 00:03:23,575
+Voici maintenant l'une des
+parties les plus intéressantes :
+
+91
+00:03:23,575 --> 00:03:25,550
+l'automatisation des messages.
+
+92
+00:03:25,550 --> 00:03:27,718
+Imagine qu'un visiteur arrive sur ta page
+
+93
+00:03:27,718 --> 00:03:30,045
+à minuit et souhaite
+connaître tes services.
+
+94
+00:03:30,045 --> 00:03:32,660
+Tu ne peux pas toujours être
+disponible pour lui répondre.
+
+95
+00:03:32,660 --> 00:03:34,986
+C'est ici qu'intervient Manychat,
+
+96
+00:03:34,986 --> 00:03:38,900
+une plateforme qui permet de construire
+des scénarios automatisés pour Messenger.
+
+97
+00:03:38,900 --> 00:03:39,910
+Premièrement,
+
+98
+00:03:39,910 --> 00:03:41,435
+crée ton compte Manychat.
+
+99
+00:03:41,435 --> 00:03:42,400
+Deuxièmement,
+
+100
+00:03:42,400 --> 00:03:45,815
+connecte ta page Facebook et
+autorise les permissions nécessaires.
+
+101
+00:03:45,815 --> 00:03:46,815
+Troisièmement,
+
+102
+00:03:46,815 --> 00:03:49,070
+crée un nouveau scénario d'automatisation.
+
+103
+00:03:49,070 --> 00:03:50,050
+Quatrièmement,
+
+104
+00:03:50,050 --> 00:03:51,895
+configure un message de bienvenue.
+
+105
+00:03:51,895 --> 00:03:52,885
+Cinquièmement,
+
+106
+00:03:52,885 --> 00:03:55,275
+ajoute des questions et
+des réponses prédéfinies.
+
+107
+00:03:55,275 --> 00:03:56,120
+Par exemple :
+
+108
+00:03:56,120 --> 00:03:57,274
+Bonjour et bienvenue sur notre page !
+
+109
+00:03:57,274 --> 00:03:58,315
+Que souhaitez-vous découvrir ?
+
+110
+00:03:58,315 --> 00:03:59,660
+Nos services,
+
+111
+00:03:59,660 --> 00:04:01,195
+nos tarifs ou nos formations ?
+
+112
+00:04:01,195 --> 00:04:03,504
+Lorsqu'un visiteur
+sélectionne une réponse,
+
+113
+00:04:03,504 --> 00:04:07,255
+le chatbot lui présente les
+informations correspondantes.
+
+114
+00:04:07,255 --> 00:04:09,220
+Tu peux aussi collecter ses coordonnées et
+
+115
+00:04:09,220 --> 00:04:11,710
+transmettre les demandes
+importantes à ton équipe.
+
+116
+00:04:13,700 --> 00:04:16,200
+Nous arrivons maintenant
+à une étape plus avancée :
+
+117
+00:04:16,200 --> 00:04:18,405
+connecter les différents outils entre eux.
+
+118
+00:04:18,405 --> 00:04:19,215
+Pour cela,
+
+119
+00:04:19,215 --> 00:04:20,705
+découvrons Make.
+
+120
+00:04:20,705 --> 00:04:22,993
+Make est une plateforme
+d'automatisation qui
+
+121
+00:04:22,993 --> 00:04:25,645
+permet de faire communiquer
+plusieurs applications.
+
+122
+00:04:25,645 --> 00:04:26,002
+Par exemple,
+
+123
+00:04:26,002 --> 00:04:28,822
+une nouvelle demande provenant
+d'un formulaire peut être
+
+124
+00:04:28,822 --> 00:04:31,490
+automatiquement enregistrée
+dans un tableau de suivi.
+
+125
+00:04:31,490 --> 00:04:32,770
+Le principe est simple :
+
+126
+00:04:32,770 --> 00:04:34,135
+un événement se produit,
+
+127
+00:04:34,135 --> 00:04:35,365
+Make le détecte,
+
+128
+00:04:35,365 --> 00:04:36,560
+et déclenche une action.
+
+129
+00:04:36,560 --> 00:04:38,275
+C'est ce qu'on appelle un workflow,
+
+130
+00:04:38,275 --> 00:04:40,095
+un flux de travail automatisé.
+
+131
+00:04:40,095 --> 00:04:40,910
+Attention :
+
+132
+00:04:40,910 --> 00:04:43,694
+chaque connexion dépend des
+intégrations disponibles,
+
+133
+00:04:43,694 --> 00:04:44,805
+des autorisations,
+
+134
+00:04:44,805 --> 00:04:46,280
+et parfois des abonnements.
+
+135
+00:04:47,700 --> 00:04:50,084
+Automatiser une page
+Facebook ne signifie pas
+
+136
+00:04:50,084 --> 00:04:52,415
+simplement publier et
+répondre aux messages.
+
+137
+00:04:52,415 --> 00:04:54,830
+Tu dois également mesurer les résultats.
+
+138
+00:04:54,830 --> 00:04:57,215
+Avec les statistiques
+de Meta Business Suite,
+
+139
+00:04:57,215 --> 00:04:59,590
+tu peux observer la portée
+de tes publications,
+
+140
+00:04:59,590 --> 00:05:01,260
+les interactions,
+
+141
+00:05:01,260 --> 00:05:03,020
+les vues et l'évolution de ton audience.
+
+142
+00:05:03,020 --> 00:05:05,345
+Identifie les contenus
+qui fonctionnent le mieux.
+
+143
+00:05:05,345 --> 00:05:08,550
+Observe les questions les plus
+fréquentes de tes visiteurs.
+
+144
+00:05:08,550 --> 00:05:11,395
+Puis améliore tes publications
+et tes scénarios de réponses.
+
+145
+00:05:11,395 --> 00:05:12,470
+N'oublie jamais :
+
+146
+00:05:12,470 --> 00:05:16,500
+une bonne automatisation doit évoluer
+avec les besoins de ton audience.
+
+147
+00:05:17,700 --> 00:05:18,325
+Et voilà !
+
+148
+00:05:18,325 --> 00:05:20,668
+Tu connais maintenant les
+principales étapes pour
+
+149
+00:05:20,668 --> 00:05:23,680
+automatiser une page Facebook
+avec l'intelligence artificielle.
+
+150
+00:05:23,680 --> 00:05:24,750
+Récapitulons :
+
+151
+00:05:24,750 --> 00:05:26,985
+ChatGPT pour créer les contenus.
+
+152
+00:05:26,985 --> 00:05:29,150
+Canva pour concevoir les visuels.
+
+153
+00:05:29,150 --> 00:05:31,885
+Meta Business Suite pour
+programmer les publications.
+
+154
+00:05:31,885 --> 00:05:34,460
+Manychat pour automatiser
+les conversations.
+
+155
+00:05:34,460 --> 00:05:35,884
+Et Make pour connecter
+les différents outils.
+
+156
+00:05:35,884 --> 00:05:36,925
+Mais attention :
+
+157
+00:05:36,925 --> 00:05:39,637
+les meilleurs résultats
+viennent d'une bonne stratégie,
+
+158
+00:05:39,637 --> 00:05:41,595
+de contenus de qualité
+et d'un suivi régulier.
+
+159
+00:05:41,595 --> 00:05:45,663
+Si tu souhaites apprendre davantage
+sur l'intelligence artificielle,
+
+160
+00:05:45,663 --> 00:05:48,290
+le marketing digital et la création vidéo,
+
+161
+00:05:48,290 --> 00:05:50,210
+abonne-toi à Jumota Agency.
+
+162
+00:05:50,210 --> 00:05:50,560
+Ici,
+
+163
+00:05:50,560 --> 00:05:53,047
+nous apprenons à utiliser
+les nouvelles technologies
+
+164
+00:05:53,047 --> 00:05:55,390
+pour développer nos
+compétences et nos activités.
+
+165
+00:05:55,390 --> 00:05:57,390
+À très bientôt pour une
+nouvelle formation !
+
