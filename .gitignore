@@ -13,3 +13,4 @@ out/facebook/video_*.mp4
 out/facebook/hits.json
 out/facebook/*/
 out/facebook/*.png
+out/facebook/final*.mp4
