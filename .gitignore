@@ -14,3 +14,5 @@ out/facebook/hits.json
 out/facebook/*/
 out/facebook/*.png
 out/facebook/final*.mp4
+out/facebook/range_*.mp4
+out/facebook/*_new.mp4
