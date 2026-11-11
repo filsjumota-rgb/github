@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<title>Bannière TikTok Motion Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,800;1,900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;background:#1a0f6e}
+.c{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:Anton,sans-serif;
+  background:radial-gradient(circle at 70% 25%,#6a3dff 0%,#3a1fd0 35%,#1d0f8a 75%,#120860 100%)}
+.stripe{position:absolute;width:520px;height:2600px;top:-300px;background:linear-gradient(#ffffff10,#ffffff04);transform:rotate(28deg)}
+.ring{position:absolute;border:3px solid #ffffff22;border-radius:50%}
+.dots{position:absolute;left:30px;top:900px;display:flex;flex-direction:column;gap:22px}
+.dots i{width:10px;height:10px;border-radius:50%;background:#ffffff66}
+/* logo */
+.logo{position:absolute;top:60px;left:50%;transform:translateX(-50%);background:#fff;border-radius:36px;
+  padding:14px 34px 14px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 14px 40px #0006}
+.logo img{width:96px;height:96px;object-fit:contain}
+.logo span{font-family:Montserrat;font-weight:800;font-size:44px;color:#0b1430;line-height:1}
+.logo span b{color:#1a73ff}
+/* title */
+.band{position:absolute;top:240px;left:-60px;width:1200px;height:250px;background:#0a0a14;transform:rotate(-5deg);
+  box-shadow:0 20px 50px #0007;display:flex;align-items:center;justify-content:center}
+.band h1{font-size:172px;letter-spacing:2px;color:#fff;line-height:1;text-shadow:6px 8px 0 #000}
+.band h1 em{font-style:normal;color:#ffd21f}
+.tag{position:absolute;top:500px;left:50%;transform:translateX(-50%) rotate(-3deg);background:#ffd21f;padding:6px 40px 10px;
+  font-size:108px;color:#0a0a14;line-height:1.05;box-shadow:12px 12px 0 #0a0a14;white-space:nowrap}
+.sub{position:absolute;top:690px;width:100%;text-align:center;font-family:Montserrat;font-weight:900;font-style:italic;
+  font-size:54px;color:#fff;text-shadow:4px 5px 0 #0a0a14;transform:rotate(-3deg)}
+/* motion panel */
+.panel{position:absolute;top:820px;left:50px;width:980px;height:230px;border:5px solid #ffd21f;border-radius:30px;
+  background:#120a4ccc;box-shadow:16px 16px 0 #0a0a14;padding:22px 26px;display:flex;justify-content:space-between}
+.it{display:flex;flex-direction:column;align-items:center;gap:12px;width:170px}
+.ic{width:140px;height:140px;border-radius:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px #0006}
+.it p{font-family:Montserrat;font-weight:800;font-size:28px;color:#fff;white-space:nowrap}
+/* person */
+.frame{position:absolute;left:70px;top:1150px;width:760px;height:900px;border:14px solid #ffd21f;border-radius:40px;background:#2a17a8}
+.person{position:absolute;left:-40px;top:1050px;width:1010px;
+  filter:drop-shadow(10px 0 0 #fff) drop-shadow(-10px 0 0 #fff) drop-shadow(0 10px 0 #fff) drop-shadow(0 -10px 0 #fff) drop-shadow(0 24px 40px #0008)}
+.cta{position:absolute;right:40px;top:1240px;background:#ff2d55;color:#fff;font-size:64px;line-height:1;padding:22px 30px;border-radius:22px;
+  transform:rotate(6deg);box-shadow:10px 10px 0 #0a0a14;text-align:center}
+.cta small{display:block;font-family:Montserrat;font-weight:800;font-size:28px;margin-top:6px}
+.play{position:absolute;right:70px;top:1500px;width:180px;height:180px;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 18px #ffffff33,0 20px 40px #0007}
+</style></head>
+<body><div class="c">
+  <div class="stripe" style="left:-320px"></div><div class="stripe" style="left:540px;opacity:.7"></div>
+  <div class="ring" style="width:220px;height:220px;right:-50px;top:150px"></div>
+  <div class="ring" style="width:300px;height:300px;left:-150px;top:1080px"></div>
+  <div class="dots"><i></i><i></i><i></i><i></i><i></i></div>
+
+  <div class="logo"><img src="logo-icone.png" alt=""><span>Jumota <b>Agency</b></span></div>
+
+  <div class="band"><h1><em>MOTION</em> DESIGN</h1></div>
+  <div class="tag">FACILE &amp; RAPIDE</div>
+  <div class="sub">ANIME TES VIDÉOS COMME UN PRO</div>
+
+  <div class="panel">
+    <div class="it"><div class="ic" style="background:#ff4d6d">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 16.5 5.5 21l2-7.5L2 9h7z"/></svg></div><p>Animation</p></div>
+    <div class="it"><div class="ic" style="background:#ffd21f">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="#0a0a14" stroke-width="2.6" stroke-linecap="round"><path d="M3 20C8 20 9 4 21 4"/><circle cx="3" cy="20" r="1.8" fill="#0a0a14"/><circle cx="21" cy="4" r="1.8" fill="#0a0a14"/></svg></div><p>Courbes</p></div>
+    <div class="it"><div class="ic" style="background:#fff">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="#3a1fd0"><path d="M12 2l5 10-5 10-5-10z"/></svg></div><p>Keyframes</p></div>
+    <div class="it"><div class="ic" style="background:#00c2a8">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="#fff"><rect x="2" y="5" width="20" height="3" rx="1.5"/><rect x="6" y="10.5" width="14" height="3" rx="1.5"/><rect x="2" y="16" width="11" height="3" rx="1.5"/></svg></div><p>Timeline</p></div>
+    <div class="it"><div class="ic" style="background:#1a73ff">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="#fff"><path d="M3 7h3l2-3h8l2 3h3v13H3z"/><circle cx="12" cy="13" r="4" fill="#1a73ff"/></svg></div><p>Effets</p></div>
+  </div>
+
+  <div class="frame"></div>
+  <img class="person" src="personne.png" alt="">
+  <div class="cta">TUTO<small>pas à pas 👇</small></div>
+  <div class="play"><svg width="80" height="80" viewBox="0 0 24 24"><path d="M7 4l14 8-14 8z" fill="#3a1fd0"/></svg></div>
+</div></body></html>
