@@ -1311,7 +1311,37 @@ function draw(ctx, t, IMG) {
 
 // ------------------------------------------------------------------ YouTube thumbnail (?thumb=1, 16x9 only)
 const THUMB = new URLSearchParams(location.search).get('thumb') === '1';
+function drawThumbPortrait(ctx) {   // TikTok / Reels cover 1080x1920: key content in the central 3:4 band
+  bg(ctx, 12, 0);
+  const g = ctx.createRadialGradient(W / 2, 1300, 0, W / 2, 1300, 760); g.addColorStop(0, 'rgba(0,217,255,0.22)'); g.addColorStop(1, 'rgba(0,217,255,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  brandLockup(ctx, W / 2, 330, 120, 'center');
+  const L = [['AUTOMATISE', C.ink], ['TA PAGE', C.ink], ['FACEBOOK', C.ink], ["AVEC L'IA", C.cyan]];
+  const fs = Math.min(...L.map(([l]) => fit(ctx, l, 170, 960)));
+  L.forEach(([l, col], i) => txt(ctx, l, W / 2, 610 + i * fs * 1.0, font(fs, 800, DISPLAY), col, 'center', -fs * 0.025));
+  const py = 610 + 4 * fs + 10, label = 'FORMATION COMPLÈTE DE A À Z', pf = fit(ctx, label, 40, 760, 800);
+  rrect(ctx, W / 2 - 420, py - 48, 840, 96, 48); ctx.fillStyle = C.cyan; ctx.fill();
+  txt(ctx, label, W / 2, py + 15, font(pf, 800, DISPLAY), C.bg0, 'center');
+  // compact automated checklist card
+  const cx = W / 2, cy = py + 320, cw = 760, ch = 330;
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.025); ctx.translate(-cx, -cy);
+  ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = 50; ctx.shadowOffsetY = 24;
+  panel(ctx, cx - cw / 2, cy - ch / 2, cw, ch, 36, '#0A1838', '#2A4785'); ctx.shadowColor = 'transparent';
+  rrect(ctx, cx - 110, cy - ch / 2 - 50, 220, 96, 48); ctx.fillStyle = C.cyan; ctx.fill();
+  icSpark(ctx, cx - 50, cy - ch / 2 - 2, 24, C.bg0); txt(ctx, 'IA', cx + 22, cy - ch / 2 + 18, font(56, 800, DISPLAY), C.bg0, 'center');
+  [['Publications', 'Messages'], ['Commentaires', 'Statistiques']].forEach((row, r) => row.forEach((lab, c) => {
+    const x = cx - cw / 2 + 30 + c * 360, y = cy - ch / 2 + 80 + r * 110;
+    panel(ctx, x, y, 340, 90, 18, C.panel2); txt(ctx, lab, x + 24, y + 56, font(30, 700, UI), C.ink); checkDot(ctx, x + 300, y + 45, 22, 1, 1);
+  }));
+  ctx.restore();
+  // tool orbs flanking the card
+  [[84, cy - 50], [W - 84, cy - 50], [84, cy + 150], [W - 84, cy + 150]].forEach(([x, y], i) => {
+    ctx.beginPath(); ctx.arc(x, y, 56, 0, M.TAU); ctx.fillStyle = C.panel2; ctx.fill(); ctx.lineWidth = 4; ctx.strokeStyle = C.cyan; ctx.stroke();
+    [TOOLS[0], TOOLS[2], TOOLS[1], TOOLS[3]][i].icon(ctx, x, y + 2, 24, C.cyan, C.panel2);
+  });
+}
 function drawThumb(ctx) {
+  if (P) { drawThumbPortrait(ctx); return; }
   bg(ctx, 12, 0);
   const g = ctx.createRadialGradient(1440, 520, 0, 1440, 520, 700); g.addColorStop(0, 'rgba(0,217,255,0.28)'); g.addColorStop(1, 'rgba(0,217,255,0)');
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
