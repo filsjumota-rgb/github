@@ -19,3 +19,4 @@ out/agent-ia/*.png
 out/agent-ia/video_*.mp4
 out/agent-ia/hits.json
 out/agent-ia/*/
+out/agent-ia/final.mp4
