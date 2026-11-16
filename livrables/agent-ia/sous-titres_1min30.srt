@@ -1,0 +1,152 @@
+1
+00:00:00,270 --> 00:00:01,600
+C'est quoi,
+
+2
+00:00:01,650 --> 00:00:03,950
+exactement, un agent IA ? Tout le monde en parle…
+
+3
+00:00:04,000 --> 00:00:05,635
+En quatre-vingt-dix secondes,
+
+4
+00:00:05,685 --> 00:00:06,510
+tu vas enfin comprendre.
+
+5
+00:00:07,980 --> 00:00:10,330
+Oublie les robots de film qui marchent et qui parlent.
+
+6
+00:00:10,380 --> 00:00:12,140
+Un agent IA, ce n'est pas ça.
+
+7
+00:00:13,470 --> 00:00:15,420
+C'est un assistant qui travaille…
+
+8
+00:00:15,470 --> 00:00:18,120
+tout seul. La différence avec ChatGPT ?
+
+9
+00:00:18,170 --> 00:00:20,730
+ChatGPT te répond quand tu lui poses une question.
+
+10
+00:00:20,780 --> 00:00:22,325
+Un agent, lui,
+
+11
+00:00:22,375 --> 00:00:23,420
+agit, même quand tu n'es pas là.
+
+12
+00:00:25,010 --> 00:00:27,430
+Pour créer un agent, tu lui donnes trois choses.
+
+13
+00:00:28,490 --> 00:00:29,925
+Un : une mission.
+
+14
+00:00:29,975 --> 00:00:31,325
+Ce que tu veux qu'il fasse,
+
+15
+00:00:31,375 --> 00:00:33,680
+par exemple : résumer l'actu de l'IA.
+
+16
+00:00:33,730 --> 00:00:35,045
+Plus ta mission est claire,
+
+17
+00:00:35,095 --> 00:00:36,490
+meilleur sera le résultat.
+
+18
+00:00:37,980 --> 00:00:39,505
+Deux : un horaire.
+
+19
+00:00:39,555 --> 00:00:40,865
+Quand doit-il travailler ?
+
+20
+00:00:40,915 --> 00:00:42,425
+Chaque matin à sept heures…
+
+21
+00:00:42,475 --> 00:00:44,390
+ou à chaque nouveau mail reçu.
+
+22
+00:00:45,480 --> 00:00:47,050
+Trois : des outils.
+
+23
+00:00:47,100 --> 00:00:48,779
+Ce sont ses mains : ta boîte mail,
+
+24
+00:00:48,829 --> 00:00:50,935
+les réseaux sociaux,
+
+25
+00:00:50,985 --> 00:00:52,810
+le web. Sans outils, il ne peut rien faire.
+
+26
+00:00:54,450 --> 00:00:55,978
+Mission, plus horaire,
+
+27
+00:00:56,028 --> 00:00:58,380
+plus outils… voilà ton agent IA !
+
+28
+00:01:00,500 --> 00:01:03,130
+Concrètement : à sept heures,
+
+29
+00:01:03,180 --> 00:01:05,005
+il cherche l'actu. À sept heures deux,
+
+30
+00:01:05,055 --> 00:01:07,065
+il la résume. À sept heures cinq,
+
+31
+00:01:07,115 --> 00:01:08,890
+c'est dans ta boîte mail. Et toi… tu dors encore.
+
+32
+00:01:11,010 --> 00:01:12,805
+Mais attention, la règle d'or :
+
+33
+00:01:12,855 --> 00:01:14,138
+l'IA prépare, toi,
+
+34
+00:01:14,188 --> 00:01:17,580
+tu valides. Relis toujours avant de publier ou d'envoyer.
+
+35
+00:01:19,480 --> 00:01:21,075
+Le tuto complet, pas à pas,
+
+36
+00:01:21,125 --> 00:01:23,600
+est sur la chaîne. Abonne-toi pour ne pas le rater !
+
+37
+00:01:24,450 --> 00:01:25,845
+Jumota Agency :
+
+38
+00:01:25,895 --> 00:01:27,790
+marketing digital et IA.
+

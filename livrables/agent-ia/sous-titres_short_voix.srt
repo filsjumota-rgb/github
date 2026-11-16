@@ -1,0 +1,96 @@
+1
+00:00:00,280 --> 00:00:02,510
+C'est quoi… un agent IA ?
+
+2
+00:00:03,490 --> 00:00:04,740
+Pas un robot de film.
+
+3
+00:00:05,980 --> 00:00:07,830
+C'est un assistant qui travaille…
+
+4
+00:00:07,880 --> 00:00:08,610
+tout seul.
+
+5
+00:00:09,510 --> 00:00:10,920
+Tu lui donnes trois choses.
+
+6
+00:00:11,980 --> 00:00:13,390
+Un : une mission.
+
+7
+00:00:13,440 --> 00:00:15,650
+Par exemple, résumer l'actu IA.
+
+8
+00:00:16,970 --> 00:00:18,485
+Deux : un horaire.
+
+9
+00:00:18,535 --> 00:00:20,020
+Chaque matin à sept heures.
+
+10
+00:00:21,490 --> 00:00:23,035
+Trois : des outils.
+
+11
+00:00:23,085 --> 00:00:24,815
+Email, réseaux sociaux,
+
+12
+00:00:24,865 --> 00:00:25,370
+web.
+
+13
+00:00:26,950 --> 00:00:28,478
+Mission, plus horaire,
+
+14
+00:00:28,528 --> 00:00:30,880
+plus outils… voilà ton agent IA !
+
+15
+00:00:32,510 --> 00:00:34,275
+À sept heures, il cherche l'actu.
+
+16
+00:00:34,325 --> 00:00:36,070
+Sept heures deux, il résume.
+
+17
+00:00:36,120 --> 00:00:38,020
+Sept heures cinq, c'est dans ta boîte.
+
+18
+00:00:38,070 --> 00:00:39,860
+Toi… tu dors encore.
+
+19
+00:00:41,480 --> 00:00:43,750
+La règle d'or : l'IA prépare,
+
+20
+00:00:43,800 --> 00:00:45,070
+toi, tu valides.
+
+21
+00:00:46,470 --> 00:00:48,080
+Le tuto complet est sur la chaîne.
+
+22
+00:00:48,130 --> 00:00:48,820
+Abonne-toi !
+
+23
+00:00:49,950 --> 00:00:51,345
+Jumota Agency :
+
+24
+00:00:51,395 --> 00:00:53,290
+marketing digital et IA.
+
