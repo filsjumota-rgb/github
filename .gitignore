@@ -20,3 +20,7 @@ out/agent-ia/video_*.mp4
 out/agent-ia/hits.json
 out/agent-ia/*/
 out/agent-ia/final.mp4
+agent-ia-90/audio/*.wav
+agent-ia-court/audio/*.wav
+out/agent-ia-90/
+out/agent-ia-court/
