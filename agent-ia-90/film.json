@@ -1,6 +1,10 @@
 {
  "title": "C’est quoi un agent IA ? (1 min 30) – Jumota Agency",
  "duration": 90,
- "formats": ["9x16"],
+ "formats": [
+  "9x16",
+  "16x9",
+  "1x1"
+ ],
  "poster": 50
 }

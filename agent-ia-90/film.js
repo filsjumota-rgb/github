@@ -4,7 +4,7 @@
 // Pure function of time: window.seek(t) paints frame t.
 import * as M from './lib/motion.js';
 
-const { W, H, E, prog, lerp, clamp, SPRING, font, rrect, noise1, TAU } = M;
+const { W, H, FORMAT, E, prog, lerp, clamp, SPRING, font, rrect, noise1, TAU } = M;
 
 // Jumota palette: bleu nuit, bleu électrique (fills) + its light tint for type on dark, blanc.
 const C = {
@@ -320,7 +320,7 @@ function s2(ctx, t) {
   if (LONG) {   // « … qui parlent » : a speech bubble from the film robot
     const kb = sp(t, c.talk, SPRING.bouncy) * (1 - io(t, c.x - 0.25, 0.2));
     if (kb > 0.001) {
-      const f2 = font(40, 700, UI), lbl = 'BONJOUR, HUMAIN.', w = measure(ctx, lbl, f2, 2) + 60, x0 = Math.min(bx + 40, XR - w), y0 = by - 540;
+      const f2 = font(40, 700, UI), lbl = 'BONJOUR, HUMAIN.', w = measure(ctx, lbl, f2, 2) + 60, x0 = Math.min(bx + 40, XR - w), y0 = by - 470;
       ctx.save(); scaleAt(ctx, kb, kb, x0, y0 + 40);
       rrect(ctx, x0, y0 - 40, w, 84, 24); ctx.fillStyle = C.ink; ctx.fill();
       ctx.beginPath(); ctx.moveTo(x0 + 30, y0 + 40); ctx.lineTo(x0 + 10, y0 + 76); ctx.lineTo(x0 + 70, y0 + 40); ctx.fill();
@@ -865,7 +865,31 @@ const PLAN = [
   [K5, s5, h5, { in: 'whip', out: 'whip' }], [K6, s6, h6, { in: 'whip', out: 'whip' }], [K7, s7, h7, { in: 'whip', out: 'up' }],
   [K8, s8, h8, { out: 'up' }], [K9, s9, h9, { out: 'up' }], [K10, s10, h10, { out: 'up' }], [K11, s11, h11, { out: 'none' }], [K12, s12, h12, { last: true }],
 ];
-const SCENES = PLAN.map(([K, draw, , o]) => ({ a: K.S.start, b: o.last ? K.S.end + 1 : K.S.end, draw, ...o }));
+// Wide and square formats: each scene is drawn in its 1080-wide portrait space and placed per format.
+// BANDS are the scene's vertical zones in that space: in 16:9 a two-band scene puts its text on the left
+// and its illustration on the right; one band is centred. In 1:1 the whole scene is centred and scaled.
+const BANDS = new Map([
+  [s1, [[560, 1580]]], [s2, [[330, 586], [586, 1500]]], [s3, [[360, 845], [860, 1450]]], [s4, [[460, 1420]]],
+  [s5, [[360, 740], [740, 1500]]], [s6, [[360, 740], [740, 1500]]], [s7, [[360, 740], [740, 1500]]],
+  [s8, [[360, 995], [1000, 1330]]], [s9, [[340, 1180], [1180, 1470]]], [s10, [[360, 1060], [1060, 1480]]],
+  [s11, [[500, 1150]]], [s12, [[700, 1300]]],
+]);
+const SCENES = PLAN.map(([K, draw, , o]) => ({ a: K.S.start, b: o.last ? K.S.end + 1 : K.S.end, draw, bands: BANDS.get(draw), ...o }));
+function place(ctx, S, lt) {
+  if (FORMAT.portrait) { S.draw(ctx, lt); return; }
+  const go = (y0, y1, cx, cy, s, clip) => {
+    ctx.save(); ctx.translate(cx, cy); ctx.scale(s, s); ctx.translate(-520, -(y0 + y1) / 2);
+    if (clip) { ctx.beginPath(); ctx.rect(30, y0, 980, y1 - y0); ctx.clip(); }
+    S.draw(ctx, lt); ctx.restore();
+  };
+  const B = S.bands;
+  if (FORMAT.square || B.length === 1) {
+    const y0 = Math.min(...B.map((b) => b[0])), y1 = Math.max(...B.map((b) => b[1]));
+    go(y0, y1, W / 2, H / 2, Math.min(1.1, (H - 80) / (y1 - y0), (W - 80) / 960), false);
+    return;
+  }
+  B.forEach(([y0, y1], i) => go(y0, y1, W * (i ? 0.73 : 0.27), H / 2, Math.min(1.05, (H - 120) / (y1 - y0)), true));
+}
 const WHIP = [-0.32, 0.08];
 function run(ctx, S, t) {
   const lt = t - S.a, dur = S.b - S.a;
@@ -878,7 +902,7 @@ function run(ctx, S, t) {
     if (q >= 1) { ctx.restore(); return; }
     ctx.translate(0, -q * 520); ctx.globalAlpha *= 1 - q;
   }
-  S.draw(ctx, lt);
+  place(ctx, S, lt);
   ctx.restore();
 }
 function draw(ctx, t) {
