@@ -24,3 +24,5 @@ agent-ia-90/audio/*.wav
 agent-ia-court/audio/*.wav
 out/agent-ia-90/
 out/agent-ia-court/
+claude-interface/audio/*.wav
+out/claude-interface/
