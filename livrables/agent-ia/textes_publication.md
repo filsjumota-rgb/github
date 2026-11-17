@@ -3,17 +3,22 @@
 ## 1. YouTube (fichier : Jumota_agent_IA_1min30_YouTube_16x9.mp4)
 
 **Titre**
-C'est quoi un agent IA ? Expliqué simplement en 90 secondes
+Cette IA bosse pendant que tu dors 😴 (Agent IA expliqué en 90 s)
+
+Variantes à tester : « Agent IA : l'employé qui ne dort jamais (expliqué en 90 s) » · « Arrête d'utiliser ChatGPT comme ça : crée ton agent IA »
 
 **Description**
-Tout le monde parle des agents IA… mais c'est quoi, exactement ? En 90 secondes, tu vas enfin comprendre.
+Et si une IA faisait ton travail… pendant que tu dors ? 😴
 
-Un agent IA, ce n'est pas un robot de film : c'est un assistant qui travaille tout seul, même quand tu n'es pas là. Pour en créer un, il te faut 3 choses :
-1️⃣ Une mission : ce que tu veux qu'il fasse
-2️⃣ Un horaire : quand il doit travailler
-3️⃣ Des outils : ta boîte mail, les réseaux sociaux, le web
+Ce n'est pas de la science-fiction : ça s'appelle un agent IA. Et contrairement à ChatGPT, il n'attend pas tes questions, il agit tout seul.
 
-⚠️ La règle d'or : l'IA prépare, toi, tu valides.
+En 90 secondes, tu vas comprendre :
+🎯 Ce qu'est vraiment un agent IA (et ce qu'il n'est PAS)
+⚙️ Les 3 ingrédients pour en créer un : une mission, un horaire, des outils
+☕ Un exemple concret : ton résumé de l'actu IA prêt dans ta boîte mail à 7 h 05, sans lever le petit doigt
+⚠️ La règle d'or que trop de gens oublient
+
+💬 Et toi, quelle tâche tu confierais en premier à ton agent IA ? Dis-le en commentaire, les meilleures idées feront l'objet d'une prochaine vidéo 👇
 
 📌 Chapitres
 0:00 C'est quoi un agent IA ?
@@ -28,11 +33,11 @@ Un agent IA, ce n'est pas un robot de film : c'est un assistant qui travaille to
 1:10 La règle d'or
 1:19 Le tuto complet
 
-🔔 Abonne-toi pour ne pas rater le tuto complet, pas à pas.
+🔔 Abonne-toi et active la cloche : le tuto complet, pas à pas, arrive très bientôt.
 
 Jumota Agency · Marketing digital & IA
 
-#agentIA #intelligenceartificielle #IA #automatisation #marketingdigital
+#agentIA #intelligenceartificielle #IA #automatisation #ChatGPT
 
 **Tags** (champ « Tags » de YouTube)
 agent IA, agent intelligence artificielle, c'est quoi un agent IA, IA expliquée simplement, automatisation IA, intelligence artificielle débutant, ChatGPT, marketing digital, Jumota Agency
