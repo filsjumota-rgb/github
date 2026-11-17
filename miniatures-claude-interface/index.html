@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Miniatures Claude interface</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton.woff2)}
+@font-face{font-family:Display;src:url(fonts/display.woff2);font-weight:100 900}
+@font-face{font-family:UI;src:url(fonts/ui-bold.woff2);font-weight:100 900}
+:root{--ink:#2A1A10;--or:#E8792B;--cream:#FDF1E4}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--cream)}
+#c{position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 55% 45%,#FFE4C4 0%,#FDF1E4 45%,#F8E7D4 100%)}
+.abs{position:absolute}
+.logo{font-family:Display;font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1}
+.logo b{color:#126BFF}
+.k{font-family:Anton;color:var(--ink);text-transform:uppercase;line-height:1.02;letter-spacing:.005em}
+.k .o{color:var(--or)}
+.band{font-family:Anton;text-transform:uppercase;color:#fff;background:var(--ink);line-height:1;border-radius:14px;
+  display:inline-flex;align-items:center;gap:.35em;transform:rotate(-2deg);box-shadow:0 14px 30px rgba(42,26,16,.25)}
+.band .o{color:#FFB36B}
+.win{border-radius:44px;background:linear-gradient(180deg,#6E4F3B 0%,#4A3020 45%,#24150C 100%);
+  box-shadow:0 40px 80px rgba(90,50,20,.35),0 8px 20px rgba(90,50,20,.2)}
+.win .bar{position:absolute;left:0;right:0;top:0;border-radius:44px 44px 0 0;background:rgba(255,255,255,.08)}
+.tl{position:absolute;border-radius:50%}
+.line{position:absolute;border-radius:99px}
+.tile{position:absolute;border-radius:24%;background:linear-gradient(160deg,#2B2C35,#15161C);display:flex;align-items:center;justify-content:center}
+.tile svg{width:56%;height:56%}
+.pill{position:absolute;font-family:UI;font-weight:800;color:#fff;border-radius:999px;white-space:nowrap;line-height:1;text-align:center;transform:translateX(-50%)}
+.round{border-radius:50%;background:linear-gradient(180deg,#fff,#EDE9E6);box-shadow:0 20px 40px rgba(90,50,20,.25);display:flex;align-items:center;justify-content:center}
+.round svg{width:55%}
+.photo{filter:drop-shadow(0 0 0 #fff) drop-shadow(7px 0 0 #fff) drop-shadow(-7px 0 0 #fff) drop-shadow(0 -7px 0 #fff) drop-shadow(20px 26px 30px rgba(90,50,20,.35))}
+.glow{border-radius:50%;background:radial-gradient(circle,rgba(232,121,43,.55),rgba(232,121,43,0) 68%)}
+</style></head>
+<body><div id="c"></div>
+<script>
+const f = new URLSearchParams(location.search).get('f') || 'yt';
+const SZ = { yt: [1280, 720], fb: [1080, 1080], tt: [1080, 1920] }[f];
+const c = document.getElementById('c'); c.style.width = SZ[0] + 'px'; c.style.height = SZ[1] + 'px';
+const st = 'fill="none" stroke="#F4F4F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"';
+const BADGES = [
+  ['Code', '#1E7BFF', '#5AA2FF', `<svg viewBox="0 0 64 64"><path ${st} d="M22 18L8 32l14 14M42 18l14 14-14 14M36 12L28 52"/></svg>`],
+  ['Projets', '#16C24A', '#4BE07A', `<svg viewBox="0 0 64 64"><path ${st} d="M8 18a4 4 0 0 1 4-4h12l6 6h22a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z M8 26h48"/></svg>`],
+  ['Artéfacts', '#9B2CF0', '#C06BFF', `<svg viewBox="0 0 64 64"><rect ${st} x="8" y="12" width="48" height="40" rx="5"/><path ${st} d="M8 22h48M16 34h14M16 42h10"/><rect x="36" y="31" width="13" height="13" rx="2" fill="#F4F4F6"/></svg>`],
+  ['Planificateur', '#F07A12', '#FFA24A', `<svg viewBox="0 0 64 64"><rect ${st} x="6" y="12" width="44" height="40" rx="6"/><path ${st} d="M6 22h44M17 7v9M39 7v9"/><g fill="#F4F4F6"><rect x="13" y="28" width="7" height="6" rx="1"/><rect x="24.5" y="28" width="7" height="6" rx="1"/><rect x="36" y="28" width="7" height="6" rx="1"/><rect x="13" y="39" width="7" height="6" rx="1"/><rect x="24.5" y="39" width="7" height="6" rx="1"/></g><circle cx="48" cy="48" r="11" fill="#15161C" stroke="#F4F4F6" stroke-width="4.5"/><path ${st} d="M48 42v6h5"/></svg>`],
+];
+const add = (cls, html, css) => { const d = document.createElement('div'); d.className = 'abs ' + cls; d.innerHTML = html; Object.assign(d.style, css); c.appendChild(d); return d; };
+const px = o => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, typeof v === 'number' ? v + 'px' : v]));
+// code window from the reference, with the badges docked on it
+function win(x, y, w, h, s) {
+  const d = add('win', '', px({ left: x, top: y, width: w, height: h }));
+  d.style.borderRadius = 44 * s + 'px';
+  const bar = document.createElement('div'); bar.className = 'bar'; bar.style.height = 64 * s + 'px'; bar.style.borderRadius = `${44 * s}px ${44 * s}px 0 0`; d.appendChild(bar);
+  ['#FF6B5E', '#FFC23D', '#5ED07A'].forEach((col, i) => { const t = document.createElement('div'); t.className = 'tl'; Object.assign(t.style, px({ left: (40 + i * 38) * s, top: 22 * s, width: 22 * s, height: 22 * s, background: col })); d.appendChild(t); });
+  return d;
+}
+function lines(d, x, y, s, rows) {
+  rows.forEach(([ind, len, col], i) => { const l = document.createElement('div'); l.className = 'line'; Object.assign(l.style, px({ left: x + ind * s, top: y + i * 40 * s, width: len * s, height: 18 * s, background: col })); d.appendChild(l); });
+}
+function badge(i, cx, cy, size) {
+  const [name, a, b, svg] = BADGES[i];
+  const t = add('tile', svg, px({ left: cx - size / 2, top: cy - size / 2, width: size, height: size }));
+  t.style.border = `${size * .03}px solid ${b}`;
+  t.style.boxShadow = `0 0 ${size * .28}px ${a}, 0 0 ${size * .08}px ${b}, 0 ${size * .12}px ${size * .25}px rgba(0,0,0,.35)`;
+  const fs = size * .2;
+  add('pill', name, px({ left: cx, top: cy - size / 2 - fs * 2.3, fontSize: fs, padding: `${fs * .42}px ${fs * .8}px`,
+    background: `linear-gradient(180deg,${b},${a})`, boxShadow: `0 0 ${fs}px ${a}88` }));
+}
+const round = (x, y, d) => add('round', `<svg viewBox="0 0 64 64"><path fill="none" stroke="#E8792B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" d="M22 18L8 32l14 14M42 18l14 14-14 14M36 12L28 52"/></svg>`, px({ left: x, top: y, width: d, height: d }));
+const key = (x, y, w, rot) => add('', `<svg viewBox="0 0 150 80" width="${w}"><defs><linearGradient id="kg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB25A"/><stop offset="1" stop-color="#E06F1F"/></linearGradient></defs><circle cx="38" cy="40" r="32" fill="url(#kg)"/><circle cx="34" cy="40" r="11" fill="#fff"/><path d="M64 30h82v20h-14v18h-16V50h-10v14H90V50H64z" fill="url(#kg)"/></svg>`, px({ left: x, top: y, transform: `rotate(${rot}deg)`, filter: 'drop-shadow(0 12px 14px rgba(150,70,10,.3))' }));
+const photo = (x, y, h) => { const i = document.createElement('img'); i.src = 'assets/photo_fade.png'; i.className = 'abs photo'; Object.assign(i.style, px({ left: x, top: y, height: h })); c.appendChild(i); };
+const glow = (x, y, d) => add('glow', '', px({ left: x - d / 2, top: y - d / 2, width: d, height: d }));
+const logo = (x, y, s) => add('logo', 'jumota<b>.</b>', px({ left: x, top: y, fontSize: s }));
+const title = (x, y, s1, s2, s3) => add('k', `<div style="font-size:${s1}px"><span class="o">4 fonctions</span> de Claude</div><div style="font-size:${s2}px">que vous n’utilisez</div><div style="font-size:${s3}px">pas (encore)</div>`, px({ left: x, top: y }));
+const band = (x, y, fs) => add('band', `Tout comprendre en <span class="o">2 minutes</span>`, px({ left: x, top: y, fontSize: fs, padding: `${fs * .34}px ${fs * .5}px` }));
+const CODE = [[0, 110, '#F39A4C'], [32, 250, '#F6CDA3'], [32, 170, '#DDD6D2'], [74, 300, '#9AA0AA'], [32, 130, '#F39A4C']];
+
+if (f === 'yt') {
+  logo(48, 34, 40);
+  title(48, 92, 74, 74, 74);
+  band(52, 360, 34);
+  win(40, 450, 720, 330, 0.8);
+  [0, 1, 2, 3].forEach(i => badge(i, 110 + i * 168, 590, 104));
+  glow(1010, 380, 700);
+  photo(705, 30, 760);
+  round(1120, 520, 120); key(690, 30, 120, -18);
+} else if (f === 'fb') {
+  logo(56, 48, 48);
+  title(56, 112, 86, 86, 86);
+  band(60, 430, 40);
+  win(30, 560, 440, 600, 0.8);
+  [0, 1, 2, 3].forEach(i => badge(i, 140 + (i % 2) * 210, 740 + Math.floor(i / 2) * 210, 112));
+  glow(820, 700, 760);
+  photo(431, 330, 860);
+  round(900, 230, 130); key(870, 40, 130, -14);
+} else {
+  logo(70, 90, 60);
+  title(70, 190, 112, 112, 112);
+  band(76, 600, 52);
+  const w = win(60, 760, 960, 520, 1.1); lines(w, 560, 100, 1.1, CODE.slice(0, 2));
+  [0, 1, 2, 3].forEach(i => badge(i, 190 + i * 233, 1110, 150));
+  glow(560, 1500, 900);
+  photo(120, 1300, 1100);
+  round(880, 1340, 140); key(30, 1400, 160, -16);
+}
+</script></body></html>
