@@ -211,18 +211,18 @@ Le guide d'installation
 complet est gratuit.
 
 54
-00:01:25,127 --> 00:01:26,985
-Écris "SKILLS" en commentaire
+00:01:25,127 --> 00:01:26,921
+Écris "GUIDE" en commentaire
 
 55
-00:01:26,985 --> 00:01:28,360
-et je te l'envoie.
+00:01:26,921 --> 00:01:29,095
+et je t'envoie le PDF complet.
 
 56
-00:01:28,360 --> 00:01:30,282
+00:01:29,095 --> 00:01:31,018
 Abonne-toi pour plus d'astuces
 
 57
-00:01:30,282 --> 00:01:31,089
+00:01:31,018 --> 00:01:31,824
 IA !
 

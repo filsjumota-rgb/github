@@ -1,5 +1,5 @@
 # 3 skills Claude à installer en premier – Jumota Agency : découpage
-1 min 33 · 9:16 1080×1920 (Reels / Shorts / TikTok) · 60 i/s · musique house synthétisée 120 BPM (1 temps = 0,5 s)
+1 min 34 · 9:16 1080×1920 (Reels / Shorts / TikTok) · 60 i/s · sans musique de fond : effets sonores seuls, calés sur une grille de 120 BPM (1 temps = 0,5 s)
 Style repris de la vidéo de référence (genre, mise en page, rythme), avec l'identité Jumota : bleu nuit, bleu électrique,
 cyan, halo violet, orange pour les alertes ; Montserrat (titres), Inter (texte), JetBrains Mono (console).
 Minutage de chaque mot : `timeline.json`, généré par `tools/timeline.py` à partir de `tools/script.json`.
@@ -19,7 +19,7 @@ Cadre fixe sur toute la vidéo :
 | 4 | 0:36–0:52,5 | Skill 2 – Skills documents | « AVANT : DU TEXTE » barré ; fichiers DOCX, PDF, PPTX, XLSX qui tombent un par un ; bouton PRÊTS À TÉLÉCHARGER | pops montants, pièces |
 | 5 | 0:52,5–1:06,5 | Skill 3 – Skill Creator | Même tâche « Notes → récap client » ×1 ×2 ×3 ; « Décris la tâche une fois » tapé ; dossier `recap-hebdo/SKILL.md` + bouton « Récap hebdo » cliqué 3 fois, RÉUTILISABLE À VOLONTÉ | toc ×3, frappe, clics |
 | 6 | 1:06,5–1:21,5 | Activation | Claude.ai : Paramètres › Capacités › Skills + interrupteur ; Claude Code : `~/.claude/skills/humanizer/` ; bouclier RÈGLE D'OR + 3 coches (sources fiables, lis le SKILL.md, puis active) | tic, frappe, impact, cloches |
-| 7 | 1:21,5–1:33,5 | Le guide | Couverture du PDF gratuit + tampon GRATUIT ; commentaire « SKILLS » tapé ; GUIDE ENVOYÉ ; carte de fin : logo Jumota Agency, bouton ABONNE-TOI cliqué | choc, frappe, cloche, impact |
+| 7 | 1:21,5–1:34,5 | Le guide | Couverture du PDF gratuit + tampon GRATUIT ; « Écris GUIDE en commentaire et je t'envoie le PDF complet » : commentaire « GUIDE » tapé, PDF ENVOYÉ ; carte de fin : logo Jumota Agency, bouton ABONNE-TOI cliqué | choc, frappe, cloche, impact |
 
 Transitions : glissé horizontal entre chapitres, la scène suivante entre déjà composée (jamais d'image vide sur la coupe).
 

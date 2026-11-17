@@ -720,8 +720,8 @@ function scene5(ctx, t) {
 // S6 CTA: free PDF guide, comment "SKILLS", subscribe, end card
 const S6 = SC[6];
 log(A(S6, 'gratuit'), 'ok', 'guide-installation.pdf · gratuit');
-log(A(S6, '"skills'), '>', 'commentaire : SKILLS');
-log(A(S6, "l'envoie"), 'ok', 'guide envoyé');
+log(A(S6, 'guide', 1), '>', 'commentaire : GUIDE');
+log(A(S6, "t'envoie"), 'ok', 'PDF complet envoyé');
 log(A(S6, 'abonne-toi'), '>', 'abonnement : Jumota Agency');
 function pdfCover(ctx, x, y, w, h, t) {
   ctx.save();
@@ -774,14 +774,14 @@ function scene6(ctx, t) {
       ctx.beginPath(); ctx.moveTo(bx + 30, by + bh - 4); ctx.lineTo(bx + 10, by + bh + 34); ctx.lineTo(bx + 80, by + bh - 4); ctx.closePath(); ctx.fillStyle = '#F4F7FF'; ctx.fill();
       ctx.beginPath(); ctx.arc(bx + 54, by + 58, 28, 0, M.TAU); ctx.fillStyle = grad(ctx, bx + 26, by + 30, bx + 82, by + 86, [[0, C.violet], [1, C.cyan]]); ctx.fill();
       txt(ctx, 'Commentaire', bx + 96, by + 68, font(26, 700, UI), '#5B6A90');
-      const s = typed('SKILLS', t, A(S, '"skills') - 0.1, 14);
+      const s = typed('GUIDE', t, A(S, 'guide', 1) - 0.1, 14);
       txt(ctx, s, bx + 30, by + 158, font(66, 900, DISPLAY), C.bg0, 'left', 2);
-      if (Math.floor(t * 3) % 2 === 0 || s.length < 6) { const cw = measure(ctx, s, font(66, 900, DISPLAY), 2); ctx.fillStyle = C.blue; ctx.fillRect(bx + 36 + cw, by + 104, 6, 64); }
+      if (Math.floor(t * 3) % 2 === 0 || s.length < 5) { const cw = measure(ctx, s, font(66, 900, DISPLAY), 2); ctx.fillStyle = C.blue; ctx.fillRect(bx + 36 + cw, by + 104, 6, 64); }
       ctx.restore();
     }
     // sent badge
-    const ke = sp(t, A(S, "l'envoie"), SPRING.bouncy);
-    if (ke > 0) { const lbl = 'GUIDE ENVOYÉ'; pill(ctx, lbl, X0 + 500 + (XW - 500) / 2 - pillW(ctx, lbl, 28) / 2, STAGE_Y + 700, ke, { size: 28, bg: C.green }); }
+    const ke = sp(t, A(S, "t'envoie"), SPRING.bouncy);
+    if (ke > 0) { const lbl = 'PDF ENVOYÉ'; pill(ctx, lbl, X0 + 500 + (XW - 500) / 2 - pillW(ctx, lbl, 28) / 2, STAGE_Y + 700, ke, { size: 28, bg: C.green }); }
   });
   // end card: logo + subscribe
   const ke = sp(t, tEnd - 0.05, SPRING.bouncy);
@@ -854,8 +854,8 @@ function buildHits() {
   ['fiables', 'lis'].forEach((w, i) => hit(A(S5, w) + 0.1, w, 'bell', { pitch: ['E5', 'G#5'][i] }));
   hit(A(S5, 'activer', 1) + 0.1, 'activer', 'bell', { pitch: 'B5' });
   hit(A(S6, 'gratuit'), 'stamp', 'thud', { pitch: 'A2' });
-  hit(A(S6, '"skills') - 0.1, 'typing', 'type', { n: 6, len: 0.45 });
-  hit(A(S6, "l'envoie"), 'sent', 'bell', { pitch: 'E6' });
+  hit(A(S6, 'guide', 1) - 0.1, 'typing', 'type', { n: 5, len: 0.4 });
+  hit(A(S6, "t'envoie"), 'sent', 'bell', { pitch: 'E6' });
   hit(A(S6, 'abonne-toi'), 'end card', 'impact');
   hit(A(S6, 'abonne-toi') + 1.45, 'click', 'click');
   // console lines: soft ticks

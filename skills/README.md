@@ -8,8 +8,11 @@ Refaire la vidéo depuis la racine du dépôt (`<skill>` = dossier du skill moti
 python3 skills/tools/timeline.py                                  # minutage (voix off si les 7 prises sont dans audio/vo/)
 node <skill>/scripts/render.mjs --film skills --format 9x16 --video-only
 node <skill>/scripts/render.mjs --film skills --format 9x16 --hits
-node <skill>/scripts/sfx.mjs skills && node <skill>/scripts/mix.mjs skills
+node <skill>/scripts/sfx.mjs skills                               # effets sonores (pas de musique de fond)
+ffmpeg -i out/skills/video_9x16.mp4 -i skills/audio/sfx.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest out/skills/final.mp4
 ```
 
 Texte et mots-clés : `tools/script.json` (mots-clés entre `*astérisques*`). Découpage : `docs/shotlist.md`.
 Sous-titres : `docs/sous-titres.srt`.
+
+Avec la voix off : remettre une musique n'est pas prévu ; `mix.mjs` mixe alors voix + effets et masterise à -14 LUFS.
