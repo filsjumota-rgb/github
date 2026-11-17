@@ -43,7 +43,7 @@ Jumota Agency · Marketing digital & IA
 agent IA, agent intelligence artificielle, c'est quoi un agent IA, IA expliquée simplement, automatisation IA, intelligence artificielle débutant, ChatGPT, marketing digital, Jumota Agency
 
 **Sous-titres** : importer `sous-titres_1min30.srt` (langue : français).
-**Miniature** : `miniature_YouTube_16x9.png`
+**Miniature** : `miniature_YouTube_1280x720.png` (avec ta photo)
 
 ---
 
