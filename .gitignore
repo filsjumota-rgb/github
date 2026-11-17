@@ -13,3 +13,10 @@ out/facebook/video_*.mp4
 out/facebook/hits.json
 out/facebook/*/
 out/facebook/*.png
+skills/audio/*.wav
+skills/audio/vo/*.wav
+out/skills/stills/
+out/skills/video_*.mp4
+out/skills/hits.json
+out/skills/*/
+out/skills/*.png
