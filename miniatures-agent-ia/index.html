@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Miniatures agent IA</title>
+<style>
+@font-face{font-family:Anton;src:url(fonts/anton.woff2)}
+@font-face{font-family:Display;src:url(fonts/display.woff2);font-weight:100 900}
+@font-face{font-family:UI;src:url(fonts/ui-bold.woff2)}
+:root{--blue:#126BFF;--ink:#0E1220;--pink:#FF2E7E;--yellow:#FFD23F}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#F6F7FB}
+#c{position:relative;overflow:hidden;background:#F6F7FB;
+  background-image:radial-gradient(#C9CEDB 2.2px,transparent 2.6px);background-size:30px 30px}
+.abs{position:absolute}
+.logo{font-family:Display;font-weight:800;color:var(--ink);letter-spacing:-.04em;line-height:1}
+.logo b{color:var(--blue)}
+.k{font-family:Anton;color:var(--ink);line-height:.92;text-transform:uppercase;letter-spacing:.005em;
+  text-shadow:6px 6px 0 rgba(18,107,255,.28)}
+.k .bl{color:var(--blue)}
+.band{font-family:Anton;text-transform:uppercase;color:#fff;background:var(--ink);line-height:1;
+  display:inline-flex;align-items:center;gap:.35em;transform:rotate(-2deg);box-shadow:8px 8px 0 var(--blue)}
+.band .y{color:var(--yellow)}
+.badge{font-family:Anton;background:var(--yellow);color:var(--ink);border:6px solid var(--ink);border-radius:999px;
+  line-height:1;text-transform:uppercase;transform:rotate(-8deg);box-shadow:6px 6px 0 var(--ink);text-align:center}
+.blob{border-radius:50%;background:radial-gradient(circle at 40% 35%,#4B8DFF,#126BFF 60%,#0B4FD0)}
+.ring{border-radius:50%;border:5px dashed rgba(18,107,255,.45)}
+.photo{filter:drop-shadow(7px 0 0 #fff) drop-shadow(-7px 0 0 #fff) drop-shadow(0 -7px 0 #fff)
+  drop-shadow(5px 0 0 var(--ink)) drop-shadow(-5px 0 0 var(--ink)) drop-shadow(0 -5px 0 var(--ink)) drop-shadow(18px 22px 0 rgba(14,18,32,.18))}
+.card{background:#fff;border:6px solid var(--ink);border-radius:26%;display:flex;align-items:center;justify-content:center;
+  box-shadow:8px 8px 0 var(--ink)}
+.card svg{width:62%;height:62%}
+.chip{font-family:UI;background:#fff;border:5px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);
+  display:flex;align-items:center;gap:.5em;color:var(--ink);white-space:nowrap}
+.chip i{font-style:normal;color:var(--blue);font-family:Anton;letter-spacing:.02em}
+.dot{display:inline-block;border-radius:50%;background:#1F9D55}
+</style></head>
+<body><div id="c"></div>
+<script>
+const f = new URLSearchParams(location.search).get('f') || 'yt';
+const SZ = { yt: [1280, 720], fb: [1080, 1080], tt: [1080, 1920] }[f];
+const c = document.getElementById('c'); c.style.width = SZ[0] + 'px'; c.style.height = SZ[1] + 'px';
+const ICON = {
+  mail: '<svg viewBox="0 0 48 48"><rect x="5" y="10" width="38" height="28" rx="6" fill="#126BFF"/><path d="M8 14l16 12 16-12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  clock: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="#FFD23F" stroke="#0E1220" stroke-width="4"/><path d="M24 12v12l8 5" fill="none" stroke="#0E1220" stroke-width="4" stroke-linecap="round"/></svg>',
+  gear: '<svg viewBox="0 0 48 48"><path fill="#7C5CFF" d="M27 4l1.6 5.2a16 16 0 0 1 4.5 2.6l5.3-1.3 3 5.2-3.7 4a16 16 0 0 1 0 5.2l3.7 4-3 5.2-5.3-1.3a16 16 0 0 1-4.5 2.6L27 44h-6l-1.6-5.2a16 16 0 0 1-4.5-2.6l-5.3 1.3-3-5.2 3.7-4a16 16 0 0 1 0-5.2l-3.7-4 3-5.2 5.3 1.3a16 16 0 0 1 4.5-2.6L21 4z"/><circle cx="24" cy="24" r="7" fill="#fff"/></svg>',
+  check: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20" fill="#1F9D55"/><path d="M14 24.5l7 7 13-14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  target: '<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19" fill="#FF2E7E"/><circle cx="24" cy="24" r="12" fill="#fff"/><circle cx="24" cy="24" r="5" fill="#FF2E7E"/></svg>',
+  moon: '<svg viewBox="0 0 48 48"><path d="M34 33A15 15 0 0 1 20 9a16 16 0 1 0 19 19 15 15 0 0 1-5 5z" fill="#FFD23F"/></svg>',
+};
+const add = (html, css) => { const d = document.createElement('div'); d.className = 'abs'; d.innerHTML = html; Object.assign(d.style, css); c.appendChild(d); return d; };
+const el = (cls, html, css) => { const d = add(html, css); d.className = 'abs ' + cls; return d; };
+const card = (k, x, y, s, rot) => el('card', ICON[k], { left: x + 'px', top: y + 'px', width: s + 'px', height: s + 'px', transform: `rotate(${rot}deg)` });
+const chip = (html, x, y, fs, rot) => el('chip', html, { left: x + 'px', top: y + 'px', fontSize: fs + 'px', padding: `${fs * .45}px ${fs * .7}px`, transform: `rotate(${rot}deg)` });
+const photo = (x, y, h) => { const i = document.createElement('img'); i.src = 'assets/photo_fade.png'; i.className = 'abs photo'; Object.assign(i.style, { left: x + 'px', top: y + 'px', height: h + 'px' }); c.appendChild(i); };
+const blob = (x, y, d) => { el('blob', '', { left: x + 'px', top: y + 'px', width: d + 'px', height: d + 'px' }); el('ring', '', { left: x - d * .07 + 'px', top: y - d * .07 + 'px', width: d * 1.14 + 'px', height: d * 1.14 + 'px' }); };
+const logo = (x, y, s) => el('logo', 'jumota<b>.</b>', { left: x + 'px', top: y + 'px', fontSize: s + 'px' });
+const title = (x, y, s1, s2) => el('k', `<div style="font-size:${s1}px;line-height:1.18">C’est quoi un</div><div style="font-size:${s2}px">Agent <span class="bl">IA ?</span></div>`, { left: x + 'px', top: y + 'px' });
+const band = (x, y, fs) => el('band', `Il bosse pendant que <span class="y">tu dors</span>`, { left: x + 'px', top: y + 'px', fontSize: fs + 'px', padding: `${fs * .32}px ${fs * .45}px` });
+const badge = (x, y, fs, txt) => el('badge', txt, { left: x + 'px', top: y + 'px', fontSize: fs + 'px', padding: `${fs * .4}px ${fs * .65}px` });
+
+if (f === 'yt') {
+  blob(800, 120, 560);
+  photo(705, 30, 760);
+  logo(54, 36, 46);
+  title(54, 120, 92, 196);
+  band(60, 470, 50);
+  badge(530, 590, 40, '90 sec');
+  card('mail', 1150, 150, 104, 8); card('clock', 700, 120, 96, -10); card('gear', 1160, 470, 92, -6);
+  chip('<span class="dot" style="width:14px;height:14px"></span> 7h05 · <i>Résumé envoyé</i>', 56, 610, 28, -1);
+} else if (f === 'fb') {
+  blob(470, 420, 640);
+  photo(431, 330, 860);
+  logo(60, 50, 52);
+  title(60, 150, 104, 214);
+  band(66, 560, 52);
+  badge(800, 60, 44, '90 sec');
+  card('mail', 330, 760, 120, -8); card('clock', 940, 330, 104, 10); card('gear', 360, 930, 92, 6);
+  chip('<span class="dot" style="width:14px;height:14px"></span> <i>Mission</i> + <i>Horaire</i> + <i>Outils</i>', 60, 680, 28, -2);
+} else {
+  blob(150, 750, 800);
+  photo(-5, 690, 1420);
+  logo(70, 90, 60);
+  title(70, 250, 128, 232);
+  band(76, 650, 60);
+  badge(720, 120, 54, '90 sec');
+  card('mail', 50, 900, 140, -8); card('clock', 880, 820, 136, 10); card('gear', 900, 1180, 112, -6); card('target', 60, 1160, 112, 6);
+  chip('<span class="dot" style="width:16px;height:16px"></span> 7h05 · <i>Résumé envoyé</i>', 70, 1700, 38, -2);
+}
+</script></body></html>
