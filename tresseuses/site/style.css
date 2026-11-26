@@ -126,6 +126,9 @@ legend { font: 700 16px var(--display); padding: 0 6px; }
 #stats, #premium { margin-top: 12px; }
 .tag.premium { background: var(--gold); color: #1d1606; }
 .premium-panel { border-color: var(--gold); }
+.offre { margin-top: 12px; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--gold); background: var(--gold-soft); font-size: 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+.offre strong { font-family: var(--display); }
+.offre .btn { padding: 8px 14px; font-size: 14px; }
 .perks { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
 .legal { max-width: 720px; padding-block: 16px 48px; }
 .legal h1 { font: 800 clamp(26px, 5vw, 34px) / 1.15 var(--display); margin: 8px 0 4px; }
