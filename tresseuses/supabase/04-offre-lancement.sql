@@ -6,8 +6,8 @@
 -- Pour changer le nombre de places ou la durée : modifier les deux petites fonctions
 -- ci-dessous, puis relancer ce script.
 
-create or replace function public.offre_nb_places() returns int language sql immutable as $$ select 50 $$;
-create or replace function public.offre_nb_jours()  returns int language sql immutable as $$ select 30 $$;
+create or replace function public.offre_nb_places() returns int language sql immutable as $$ select 75 $$;
+create or replace function public.offre_nb_jours()  returns int language sql immutable as $$ select 37 $$;
 
 -- Qui a déjà reçu l'offre (pas de clé étrangère : la trace reste si le profil est supprimé)
 create table if not exists public.offres_lancement (

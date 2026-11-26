@@ -449,7 +449,7 @@ async function loadOffre() {
   if (n <= 0) return;
   box.replaceChildren(
     el("span", {}, el("strong", { text: "Offre de lancement : " }),
-      "1 mois de Premium offert aux premières tresseuses inscrites. Plus que " + n + " place" + (n > 1 ? "s" : "") + "\u00a0!"),
+      "1 mois et 1 semaine de Premium offerts aux premières tresseuses inscrites. Plus que " + n + " place" + (n > 1 ? "s" : "") + "\u00a0!"),
     el("a", { class: "btn primary", href: "#espace", text: "Je m'inscris" }));
 }
 
