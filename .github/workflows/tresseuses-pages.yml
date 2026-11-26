@@ -3,7 +3,9 @@ name: Publier Tresseuses du Cameroun
 on:
   push:
     branches: [main]
-    paths: ["tresseuses/site/**"]
+    paths:
+      - "tresseuses/site/**"
+      - ".github/workflows/tresseuses-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -13,19 +15,27 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  # 1. Préparer le site et l'envoyer à GitHub
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: tresseuses/site
+
+  # 2. Publier, dans un travail séparé qui attend la fin du premier :
+  #    l'envoi est alors bien enregistré quand la publication le cherche.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
