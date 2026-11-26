@@ -7,5 +7,5 @@ window.TRESSES_CONFIG = {
   supabaseAnonKey: "sb_publishable_f5W1qiPcWuokLUR-M20y9A_cUJP4QYv",
   // Contact affiché dans les conditions d'utilisation et la politique de confidentialité
   // (e-mail ou numéro WhatsApp). Vide = la ligne de contact est masquée.
-  contact: ""
+  contact: "Jumotaagency@gmail.com"
 };
