@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conditions d'utilisation · Tresseuses du Cameroun</title>
+<meta name="theme-color" content="#0f5a3a">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="logo" src="logo.svg" alt="" width="52" height="52"><span>Tresseuses du Cameroun</span></a>
+  </div>
+</header>
+<div class="braid" aria-hidden="true"></div>
+
+<main class="wrap legal">
+  <a class="back" href="./">← Retour à l'annuaire</a>
+  <h1>Conditions d'utilisation</h1>
+  <p class="hint">Dernière mise à jour : 26 novembre 2026</p>
+
+  <h2>1. Le service</h2>
+  <p>Tresseuses du Cameroun est un annuaire en ligne. Il permet aux tresseuses de présenter leurs services (styles, prix indicatifs, photos, disponibilités) et aux clientes de les trouver puis de les contacter directement, par WhatsApp ou par téléphone.</p>
+  <p>L'utilisation de l'annuaire est gratuite. Des services payants facultatifs pourront être proposés plus tard aux tresseuses (par exemple une meilleure visibilité). Ils seront annoncés clairement à l'avance et ne seront jamais imposés.</p>
+
+  <h2>2. Notre rôle</h2>
+  <p>Le site met les personnes en relation. Il ne réalise pas les coiffures, ne fixe pas les prix et ne reçoit pas les paiements des prestations. L'accord sur la prestation, le prix, le lieu, l'horaire et le paiement se fait directement entre la cliente et la tresseuse.</p>
+  <p>Nous ne pouvons donc pas être tenus responsables de la qualité d'une prestation, d'un retard, d'une annulation ou d'un désaccord sur le prix. En cas de problème, nous vous invitons à laisser un avis honnête et, si nécessaire, à nous le signaler.</p>
+
+  <h2>3. Engagements des tresseuses</h2>
+  <ul>
+    <li>Donner des informations exactes : nom, ville, quartier, numéro de contact et prix indicatifs.</li>
+    <li>Publier uniquement des photos de leurs propres réalisations.</li>
+    <li>Avoir l'accord des personnes reconnaissables sur les photos, et ne jamais publier de photo d'un enfant sans l'accord de ses parents.</li>
+    <li>Ne pas publier de contenu choquant, trompeur ou sans rapport avec la coiffure.</li>
+    <li>Garder leur mot de passe secret. Chaque tresseuse est responsable de ce qui est publié avec son compte.</li>
+  </ul>
+
+  <h2>4. Avis des clientes</h2>
+  <p>Les avis doivent décrire une expérience réelle, rester polis et ne contenir ni insulte, ni numéro de téléphone, ni information personnelle sur une autre personne. Une tresseuse ne peut pas noter son propre profil.</p>
+  <p>Nous pouvons retirer un avis faux, injurieux ou hors sujet.</p>
+
+  <h2>5. Modération</h2>
+  <p>Nous pouvons modifier ou retirer un profil, une photo ou un avis qui ne respecte pas ces conditions ou la loi camerounaise, et suspendre un compte en cas d'abus répétés.</p>
+
+  <h2>6. Supprimer son profil</h2>
+  <p>Une tresseuse peut retirer son profil à tout moment depuis l'espace « Je suis tresseuse », bouton « Retirer mon profil ». Ses photos, ses avis et ses statistiques sont alors supprimés.</p>
+
+  <h2>7. Disponibilité du site</h2>
+  <p>Nous faisons notre possible pour que le site fonctionne en permanence, sans pouvoir le garantir. Il peut être interrompu pour maintenance ou en cas de panne d'un de nos prestataires techniques.</p>
+
+  <h2>8. Modification des conditions</h2>
+  <p>Ces conditions peuvent évoluer. La date de mise à jour figure en haut de la page. En continuant d'utiliser le site après une modification, vous acceptez la nouvelle version.</p>
+
+  <h2>9. Droit applicable et contact</h2>
+  <p>Ces conditions sont soumises au droit camerounais.</p>
+  <p id="contact-line">Pour toute question ou tout signalement : <strong id="contact"></strong></p>
+
+  <p><a href="confidentialite.html">Lire la politique de confidentialité</a></p>
+</main>
+<footer class="wrap foot">Tresseuses du Cameroun · <a href="./">Annuaire</a> · <a href="confidentialite.html">Confidentialité</a></footer>
+<script src="config.js"></script>
+<script>
+  (function () {
+    var c = (window.TRESSES_CONFIG || {}).contact;
+    if (c) document.getElementById("contact").textContent = c;
+    else document.getElementById("contact-line").hidden = true;
+  })();
+</script>
+</body>
+</html>

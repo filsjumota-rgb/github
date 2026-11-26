@@ -118,6 +118,17 @@ legend { font: 700 16px var(--display); padding: 0 6px; }
 .file-btn { position: relative; justify-self: start; color: var(--ink); }
 .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
+.foot a, .check a { color: var(--green); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 2px; min-width: 0; }
+.stat b { font: 800 26px var(--display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--muted); }
+#stats { margin-top: 12px; }
+.legal { max-width: 720px; padding-block: 16px 48px; }
+.legal h1 { font: 800 clamp(26px, 5vw, 34px) / 1.15 var(--display); margin: 8px 0 4px; }
+.legal h2 { font: 700 19px var(--display); margin: 26px 0 6px; }
+.legal p, .legal li { max-width: 68ch; }
+.legal a { color: var(--green); }
 .foot { font-size: 12px; color: var(--muted); padding-block: 24px calc(24px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
 .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom)); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-weight: 600; z-index: 20; max-width: calc(100% - 32px); }
 
