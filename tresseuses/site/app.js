@@ -86,6 +86,18 @@ function liveApi(sb) {
       return path;
     },
     async deletePhoto(path) { must(await sb.storage.from("photos").remove([path])); },
+    // Statistiques : on enregistre une visite ou un clic, sans bloquer la page si ça échoue
+    track(id, type) { sb.from("evenements").insert({ tresseuse_id: id, type }).then(() => {}, () => {}); },
+    async stats(uid) {
+      const since = new Date(Date.now() - 30 * 864e5).toISOString();
+      const count = async (type) => {
+        const r = await sb.from("evenements").select("id", { count: "exact", head: true }).eq("tresseuse_id", uid).eq("type", type).gte("created_at", since);
+        if (r.error) throw r.error;
+        return r.count || 0;
+      };
+      const [vue, whatsapp, appel] = await Promise.all([count("vue"), count("whatsapp"), count("appel")]);
+      return { vue, whatsapp, appel };
+    },
   };
 }
 
@@ -104,6 +116,7 @@ function demoApi() {
   let me = null;
   const withNotes = (r) => { const a = avis[r.id] || []; return { ...r, nb_avis: a.length, note_moyenne: a.length ? a.reduce((s, x) => s + x.note, 0) / a.length : 0 }; };
   const auths = new Set();
+  const events = {};
   const fire = () => auths.forEach(f => f(me));
   return {
     live: false,
@@ -122,6 +135,8 @@ function demoApi() {
     async remove(uid) { const i = rows.findIndex(x => x.id === uid); if (i >= 0) rows.splice(i, 1); },
     async upload(_uid, blob) { return URL.createObjectURL(blob); },
     async deletePhoto() {},
+    track(id, type) { (events[id] ||= { vue: 0, whatsapp: 0, appel: 0 })[type]++; },
+    async stats(uid) { return { ...(events[uid] || { vue: 0, whatsapp: 0, appel: 0 }) }; },
   };
 }
 
@@ -240,6 +255,13 @@ async function renderDetail(id) {
     }
   });
   const ownProfile = !!(me && me.id === p.id);
+  // Une visite comptée par profil et par session ; jamais sur son propre profil
+  if (!ownProfile) {
+    let seen = false;
+    try { seen = !!sessionStorage.getItem("vu-" + p.id); sessionStorage.setItem("vu-" + p.id, "1"); } catch {}
+    if (!seen) api.track(p.id, "vue");
+  }
+  const trackClick = (type) => () => { if (!ownProfile) api.track(p.id, type); };
 
   box.replaceChildren(el("div", { class: "detail" },
     el("a", { class: "back", href: "#", text: "← Toutes les tresseuses" }),
@@ -255,8 +277,8 @@ async function renderDetail(id) {
         el("div", { class: "panel" },
           el("h2", { text: "Contacter" }),
           el("div", { class: "actions" },
-            el("a", { class: "btn wa", href: "https://wa.me/237" + p.tel + "?text=" + encodeURIComponent(msg), target: "_blank", rel: "noopener", text: "Écrire sur WhatsApp" }),
-            el("a", { class: "btn ghost", href: "tel:+237" + p.tel, text: "Appeler" })),
+            el("a", { class: "btn wa", href: "https://wa.me/237" + p.tel + "?text=" + encodeURIComponent(msg), target: "_blank", rel: "noopener", text: "Écrire sur WhatsApp", onclick: trackClick("whatsapp") }),
+            el("a", { class: "btn ghost", href: "tel:+237" + p.tel, text: "Appeler", onclick: trackClick("appel") })),
           el("div", { class: "actions" }, num, el("button", { class: "linkish", type: "button", text: "Copier le numéro", onclick: () => copy("+237" + p.tel, num) })),
           p.dispo ? el("div", { class: "where", text: "Disponible : " + p.dispo }) : null),
         el("div", { class: "panel" }, el("h2", { text: "Styles et prix" }), prices, el("span", { class: "hint", text: "Prix indicatifs donnés par la tresseuse. Mèches non comprises sauf mention." })),
@@ -287,6 +309,7 @@ function setAuthMode(signup) {
   $("auth-submit").textContent = signup ? "Créer mon compte" : "Me connecter";
   $("auth-switch").textContent = signup ? "J'ai déjà un compte : me connecter" : "Pas encore de compte : en créer un";
   $("a-pass").autocomplete = signup ? "new-password" : "current-password";
+  $("a-cgu-row").hidden = !signup;
   notice($("auth-msg"), "");
 }
 $("auth-switch").onclick = () => setAuthMode(!signupMode);
@@ -295,6 +318,7 @@ $("auth-form").addEventListener("submit", async (e) => {
   const email = $("a-email").value.trim(), pass = $("a-pass").value;
   if (!/^\S+@\S+\.\S+$/.test(email)) return notice($("auth-msg"), "Adresse e-mail invalide.", "err");
   if (pass.length < 6) return notice($("auth-msg"), "Le mot de passe doit faire au moins 6 caractères.", "err");
+  if (signupMode && !$("a-cgu").checked) return notice($("auth-msg"), "Cochez la case pour accepter les conditions d'utilisation.", "err");
   $("auth-submit").disabled = true;
   try {
     if (signupMode) {
@@ -368,9 +392,22 @@ function fillForm(d) {
   $("save").textContent = d ? "Mettre à jour mon profil" : "Publier mon profil";
   $("del").hidden = !d; $("me-view").hidden = !d;
   $("me-view").href = "#t/" + encodeURIComponent(me.id);
+  loadStats(!!d);
   notice($("me-status"), d ? "Votre profil est en ligne. Partagez son lien sur votre statut WhatsApp pour avoir plus de clientes." : "Complétez votre profil puis publiez-le : il sera visible tout de suite.", d ? "ok" : "");
   drawThumbs();
 }
+async function loadStats(show) {
+  const box = $("stats");
+  box.hidden = !show;
+  if (!show || !me) return;
+  const tile = (n, label) => el("div", { class: "stat" }, el("b", { text: n }), el("span", { text: label }));
+  $("stats-grid").replaceChildren(tile("…", "Vues du profil"), tile("…", "Clics WhatsApp"), tile("…", "Appels"));
+  try {
+    const s = await api.stats(me.id);
+    $("stats-grid").replaceChildren(tile(String(s.vue), "Vues du profil"), tile(String(s.whatsapp), "Clics WhatsApp"), tile(String(s.appel), "Appels"));
+  } catch { box.hidden = true; }  // table pas encore créée : on n'affiche rien
+}
+
 $("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   $("save").disabled = true;

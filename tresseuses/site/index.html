@@ -69,6 +69,7 @@
         <label>Adresse e-mail <input id="a-email" type="email" autocomplete="email" required></label>
         <label>Mot de passe <input id="a-pass" type="password" autocomplete="new-password" minlength="6" required>
           <span class="hint">6 caractères minimum.</span></label>
+        <label class="check" id="a-cgu-row"><input id="a-cgu" type="checkbox"> <span>J'accepte les <a href="cgu.html" target="_blank" rel="noopener">conditions d'utilisation</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a></span></label>
         <div id="auth-msg"></div>
         <button class="btn primary" type="submit" id="auth-submit">Créer mon compte</button>
         <button class="linkish" type="button" id="auth-switch">J'ai déjà un compte : me connecter</button>
@@ -84,6 +85,11 @@
         </span>
       </div>
       <div id="me-status"></div>
+      <section id="stats" class="panel" hidden aria-labelledby="stats-title">
+        <h2 id="stats-title">Vos statistiques</h2>
+        <div class="stats" id="stats-grid"></div>
+        <span class="hint">30 derniers jours. Partagez votre lien sur votre statut WhatsApp pour faire monter ces chiffres.</span>
+      </section>
       <form id="form" novalidate>
         <fieldset>
           <legend>Votre profil</legend>
@@ -136,7 +142,7 @@
   </section>
 </main>
 
-<footer class="wrap foot">Tresseuses du Cameroun · Annuaire gratuit · Les prix sont indiqués par les tresseuses.</footer>
+<footer class="wrap foot">Tresseuses du Cameroun · Annuaire gratuit · Les prix sont indiqués par les tresseuses.<br><a href="cgu.html">Conditions d'utilisation</a> · <a href="confidentialite.html">Confidentialité</a></footer>
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script src="config.js"></script>

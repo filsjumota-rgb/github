@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confidentialité · Tresseuses du Cameroun</title>
+<meta name="theme-color" content="#0f5a3a">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <a class="brand" href="./"><img class="logo" src="logo.svg" alt="" width="52" height="52"><span>Tresseuses du Cameroun</span></a>
+  </div>
+</header>
+<div class="braid" aria-hidden="true"></div>
+
+<main class="wrap legal">
+  <a class="back" href="./">← Retour à l'annuaire</a>
+  <h1>Politique de confidentialité</h1>
+  <p class="hint">Dernière mise à jour : 26 novembre 2026</p>
+
+  <p>Cette page explique quelles informations nous enregistrons, pourquoi, qui peut les voir et comment les supprimer.</p>
+
+  <h2>1. Ce que nous enregistrons</h2>
+  <p><strong>Pour les tresseuses qui créent un profil :</strong></p>
+  <ul>
+    <li>l'adresse e-mail et le mot de passe du compte (le mot de passe est chiffré et nous ne pouvons pas le lire) ;</li>
+    <li>les informations du profil : nom affiché, ville, quartier, numéro WhatsApp, années d'expérience, disponibilités, présentation, styles et prix ;</li>
+    <li>les photos de réalisations ajoutées.</li>
+  </ul>
+  <p><strong>Pour les clientes qui laissent un avis :</strong> le prénom indiqué, la note et le commentaire. Aucun compte n'est nécessaire.</p>
+  <p><strong>Statistiques :</strong> quand quelqu'un consulte un profil ou touche « WhatsApp » ou « Appeler », nous enregistrons seulement le type d'action, le profil concerné et la date. Nous ne conservons ni le nom ni le numéro de la personne qui consulte.</p>
+
+  <h2>2. Ce qui est public</h2>
+  <p>Le but de l'annuaire est d'être vu. Sont donc visibles par tous les visiteurs : les informations du profil (y compris le numéro WhatsApp), les photos, ainsi que les avis avec le prénom de leur auteur.</p>
+  <p>Ne sont pas publics : l'adresse e-mail des tresseuses et les statistiques. Chaque tresseuse ne voit que ses propres statistiques.</p>
+
+  <h2>3. Pourquoi</h2>
+  <ul>
+    <li>Afficher l'annuaire et permettre aux clientes de contacter les tresseuses.</li>
+    <li>Permettre à chaque tresseuse de modifier son profil.</li>
+    <li>Montrer à chaque tresseuse combien de personnes ont consulté son profil.</li>
+  </ul>
+  <p>Nous ne vendons pas ces informations et nous ne les utilisons pas pour de la publicité.</p>
+
+  <h2>4. Où sont stockées les données</h2>
+  <p>Les données sont hébergées par Supabase, sur des serveurs situés dans l'Union européenne (Irlande). Le site lui-même est hébergé par GitHub Pages. Ces prestataires techniques n'utilisent pas vos données pour leur propre compte.</p>
+  <p>Sur votre téléphone, le site garde seulement de petites informations pratiques : le fait que vous avez déjà laissé un avis à une tresseuse, ou déjà consulté un profil pendant votre visite. Il n'y a pas de cookie publicitaire.</p>
+
+  <h2>5. Durée de conservation</h2>
+  <p>Les informations d'un profil sont conservées tant que le profil existe. Quand une tresseuse retire son profil, ses photos, les avis reçus et ses statistiques sont supprimés.</p>
+
+  <h2>6. Vos droits</h2>
+  <p>Vous pouvez à tout moment consulter, corriger ou supprimer vos informations :</p>
+  <ul>
+    <li><strong>Tresseuses :</strong> depuis l'espace « Je suis tresseuse » (« Mettre à jour mon profil » ou « Retirer mon profil ») ;</li>
+    <li><strong>Clientes :</strong> pour faire retirer un avis que vous avez laissé, contactez-nous.</li>
+  </ul>
+  <p id="contact-line">Contact pour toute demande : <strong id="contact"></strong></p>
+
+  <p><a href="cgu.html">Lire les conditions d'utilisation</a></p>
+</main>
+<footer class="wrap foot">Tresseuses du Cameroun · <a href="./">Annuaire</a> · <a href="cgu.html">Conditions d'utilisation</a></footer>
+<script src="config.js"></script>
+<script>
+  (function () {
+    var c = (window.TRESSES_CONFIG || {}).contact;
+    if (c) document.getElementById("contact").textContent = c;
+    else document.getElementById("contact-line").hidden = true;
+  })();
+</script>
+</body>
+</html>
