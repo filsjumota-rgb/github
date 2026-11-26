@@ -23,6 +23,8 @@ img { max-width: 100%; display: block; }
 .hero { background: var(--green); color: var(--green-ink); padding-top: calc(env(safe-area-inset-top) + 26px); }
 .hero .wrap { padding-block: 0 20px; display: grid; gap: 8px; }
 .brand { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; color: inherit; text-decoration: none; letter-spacing: -0.01em; }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand .logo { flex: none; width: clamp(44px, 9vw, 60px); height: auto; border-radius: 50%; box-shadow: 0 0 0 3px var(--gold); }
 .hero p { margin: 0; max-width: 60ch; opacity: .92; }
 .braid { height: 14px; background:
   linear-gradient(135deg, var(--gold) 25%, transparent 25%) -7px 0 / 14px 14px,
