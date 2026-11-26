@@ -455,6 +455,17 @@ async function loadOffre() {
 
 /* ---------- Premium (paiement Mobile Money via Campay) ---------- */
 let premiumPoll = null;
+
+// Rappel de fin de Premium : 7 jours avant la fin, et jusqu'à 30 jours après. null sinon.
+function premiumRappel(until, now) {
+  const t = until ? Date.parse(until) : NaN;
+  if (!Number.isFinite(t)) return null;
+  const jours = Math.ceil((t - now) / 864e5);
+  if (jours > 7 || jours < -30) return null;
+  if (jours > 1) return { urgent: false, texte: "Votre Premium se termine dans " + jours + " jours (le " + dateFr(until) + "). Prolongez-le pour rester en tête des résultats." };
+  if (t > now) return { urgent: true, texte: "Votre Premium se termine très bientôt (le " + dateFr(until) + "). Prolongez-le maintenant pour garder votre place en tête des résultats." };
+  return { urgent: true, texte: "Votre Premium est terminé depuis le " + dateFr(until) + ". Votre profil n'est plus en tête des résultats : réactivez-le en quelques secondes." };
+}
 async function loadPremium(profile) {
   const box = $("premium"), body = $("premium-body");
   clearTimeout(premiumPoll);
@@ -466,14 +477,19 @@ async function loadPremium(profile) {
   catch { box.hidden = true; return; }  // service pas encore installé : on n'affiche rien
   const active = info.premium_until && Date.parse(info.premium_until) > Date.now();
   const prix = fcfa(info.prix);
+  const rappel = premiumRappel(info.premium_until, Date.now());
+  // Rappel bien visible en haut de l'espace tresseuse, en plus de l'encadré Premium
+  const old = $("rappel-premium"); if (old) old.remove();
+  if (rappel) $("me-status").append(el("div", { id: "rappel-premium", class: "notice " + (rappel.urgent ? "err" : ""), text: rappel.texte + " Voir l'encadré ★ Premium ci-dessous." }));
   const tel = el("input", { id: "pm-tel", inputmode: "tel", maxlength: "20", value: profile.tel });
   const msg = el("div");
   const btn = el("button", { class: "btn primary", type: "button", text: (active ? "Prolonger de " + info.jours + " jours" : "Passer Premium") + " · " + prix });
   btn.onclick = () => payPremium(tel.value, msg, btn);
   body.replaceChildren(
-    active
+    rappel ? el("div", { class: "notice " + (rappel.urgent ? "err" : ""), text: rappel.texte }) : null,
+    active && !rappel
       ? el("div", { class: "notice ok", text: "Premium actif jusqu'au " + dateFr(info.premium_until) + "." })
-      : el("ul", { class: "perks" },
+      : active ? null : el("ul", { class: "perks" },
           el("li", { text: "Votre profil apparaît en tête des résultats dans votre ville." }),
           el("li", { text: "Un badge « ★ Premium » sur votre fiche et dans la liste." }),
           el("li", { text: prix + " pour " + info.jours + " jours, sans engagement ni renouvellement automatique." })),
