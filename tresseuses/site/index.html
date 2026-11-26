@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tresseuses du Cameroun</title>
+<meta name="description" content="Trouvez une tresseuse près de chez vous au Cameroun : styles, prix, photos, avis, et contact direct sur WhatsApp.">
+<meta property="og:title" content="Tresseuses du Cameroun">
+<meta property="og:description" content="Styles, prix, photos et avis des tresseuses près de chez vous. Contact direct sur WhatsApp.">
+<meta name="theme-color" content="#0f5a3a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <a class="brand" href="#">Tresseuses du Cameroun</a>
+    <p>Trouvez une tresseuse près de chez vous, voyez ses réalisations, ses prix et ses avis, puis écrivez-lui sur WhatsApp.</p>
+  </div>
+</header>
+<div class="braid" aria-hidden="true"></div>
+
+<div class="wrap">
+  <div id="demo-banner" class="notice" hidden>Mode démonstration : les profils affichés sont des exemples et rien n'est enregistré. Renseignez <code>config.js</code> pour passer en ligne.</div>
+  <nav class="tabs">
+    <a class="tab" id="nav-find" href="#">Trouver une tresseuse</a>
+    <a class="tab" id="nav-me" href="#espace">Je suis tresseuse</a>
+  </nav>
+</div>
+
+<main class="wrap">
+  <!-- Liste -->
+  <section id="view-list">
+    <div class="filters">
+      <label>Ville <select id="f-ville"><option value="">Toutes les villes</option></select></label>
+      <label>Style <select id="f-style"><option value="">Tous les styles</option></select></label>
+      <label class="full">Quartier ou nom <input id="f-q" type="search" placeholder="Ex. Bonamoussadi, Mvog-Ada, Aïcha…"></label>
+      <label class="check"><input id="f-home" type="checkbox"> Se déplace à domicile</label>
+      <label>Trier par
+        <select id="f-sort">
+          <option value="recent">Profils récents</option>
+          <option value="note">Mieux notées</option>
+          <option value="prix">Prix le plus bas</option>
+        </select>
+      </label>
+    </div>
+    <div class="count" id="count" aria-live="polite"></div>
+    <div class="grid" id="list"><div class="empty"><strong>Chargement des tresseuses…</strong></div></div>
+  </section>
+
+  <!-- Fiche détaillée -->
+  <section id="view-detail" hidden></section>
+
+  <!-- Espace tresseuse -->
+  <section id="view-me" hidden>
+    <div id="auth-box">
+      <form id="auth-form" class="panel" novalidate>
+        <h2 id="auth-title">Créer mon compte tresseuse</h2>
+        <p class="hint">Gratuit. Votre compte sert seulement à modifier votre profil.</p>
+        <label>Adresse e-mail <input id="a-email" type="email" autocomplete="email" required></label>
+        <label>Mot de passe <input id="a-pass" type="password" autocomplete="new-password" minlength="6" required>
+          <span class="hint">6 caractères minimum.</span></label>
+        <div id="auth-msg"></div>
+        <button class="btn primary" type="submit" id="auth-submit">Créer mon compte</button>
+        <button class="linkish" type="button" id="auth-switch">J'ai déjà un compte : me connecter</button>
+      </form>
+    </div>
+
+    <div id="profile-box" hidden>
+      <div class="me-bar">
+        <span id="me-email" class="hint"></span>
+        <span class="actions">
+          <a class="btn ghost" id="me-view" href="#" hidden>Voir mon profil public</a>
+          <button class="btn ghost" type="button" id="logout">Me déconnecter</button>
+        </span>
+      </div>
+      <div id="me-status"></div>
+      <form id="form" novalidate>
+        <fieldset>
+          <legend>Votre profil</legend>
+          <label>Nom affiché <input id="p-nom" maxlength="60" required placeholder="Ex. Aïcha Tresses"></label>
+          <div class="row2">
+            <label>Ville <select id="p-ville" required></select></label>
+            <label>Quartier <input id="p-quartier" maxlength="60" placeholder="Ex. Akwa, Biyem-Assi"></label>
+          </div>
+          <label>Numéro WhatsApp
+            <input id="p-tel" inputmode="tel" maxlength="20" required placeholder="6 XX XX XX XX">
+            <span class="hint">9 chiffres, sans le +237. Les clientes vous écriront à ce numéro.</span>
+          </label>
+          <div class="row2">
+            <label>Années d'expérience <input id="p-exp" type="number" min="0" max="60" inputmode="numeric"></label>
+            <label>Disponibilité <input id="p-dispo" maxlength="80" placeholder="Ex. Lun–Sam, 8h–19h"></label>
+          </div>
+          <label class="check"><input id="p-home" type="checkbox"> Je me déplace à domicile</label>
+          <label>Présentation <textarea id="p-desc" maxlength="400" placeholder="Votre spécialité, votre salon, ce qui vous distingue…"></textarea></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Photos de vos réalisations</legend>
+          <span class="hint">Jusqu'à 8 photos. Elles sont réduites automatiquement pour économiser les données mobiles.</span>
+          <div class="thumbs" id="p-photos"></div>
+          <label class="btn ghost file-btn">Ajouter des photos
+            <input id="p-file" type="file" accept="image/*" multiple>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Vos styles et prix (FCFA)</legend>
+          <span class="hint">Cochez ce que vous savez faire. Le prix est indicatif, à partir de.</span>
+          <div id="p-styles" class="styles"></div>
+        </fieldset>
+
+        <div id="form-msg"></div>
+        <div class="actions">
+          <button class="btn primary" type="submit" id="save">Publier mon profil</button>
+          <button class="btn danger" type="button" id="del" hidden>Retirer mon profil</button>
+        </div>
+        <div id="del-confirm" class="notice" hidden>
+          <p>Votre profil, vos photos et vos avis seront supprimés. Confirmer ?</p>
+          <div class="actions">
+            <button class="btn danger" type="button" id="del-yes">Oui, supprimer</button>
+            <button class="btn ghost" type="button" id="del-no">Annuler</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">Tresseuses du Cameroun · Annuaire gratuit · Les prix sont indiqués par les tresseuses.</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

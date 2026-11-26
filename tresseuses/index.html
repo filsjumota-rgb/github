@@ -1,0 +1,340 @@
+<title>Tresseuses du Cameroun</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: colonne mobile d'abord, bandeau tressé en tête, onglets Trouver / Je suis tresseuse, cartes en grille */
+:root {
+  --bg: #f6f7f2;
+  --surface: #ffffff;
+  --ink: #18231c;
+  --muted: #5b6a5f;
+  --line: #dde3da;
+  --green: #0f5a3a;
+  --green-ink: #ffffff;
+  --gold: #e8a317;
+  --gold-soft: #fcefd0;
+  --red: #b3261e;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1511; --surface: #18211b; --ink: #eaf0ea; --muted: #9fb0a3; --line: #2b372f;
+    --green: #3fb67d; --green-ink: #06140c; --gold: #f2b53a; --gold-soft: #3a2f14; --red: #f08a82;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1511; --surface: #18211b; --ink: #eaf0ea; --muted: #9fb0a3; --line: #2b372f;
+  --green: #3fb67d; --green-ink: #06140c; --gold: #f2b53a; --gold-soft: #3a2f14; --red: #f08a82;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 960px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+.hero { background: var(--green); color: var(--green-ink); margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: calc(env(safe-area-inset-top, 0px) + 28px); }
+.hero .wrap { padding-block: 0 22px; display: grid; gap: 8px; }
+.hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+.hero p { margin: 0; max-width: 60ch; opacity: .92; }
+.braid { height: 14px; background:
+  linear-gradient(135deg, var(--gold) 25%, transparent 25%) -7px 0 / 14px 14px,
+  linear-gradient(225deg, var(--gold) 25%, transparent 25%) -7px 0 / 14px 14px,
+  linear-gradient(315deg, var(--gold) 25%, transparent 25%) 0 0 / 14px 14px,
+  linear-gradient(45deg, var(--gold) 25%, var(--green) 25%) 0 0 / 14px 14px; }
+
+.tabs { display: flex; gap: 8px; padding-block: 16px 4px; flex-wrap: wrap; }
+.tab { font: 600 15px var(--body); border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); padding: 10px 16px; border-radius: 999px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tab:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.filters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-block: 12px; }
+.filters .full { grid-column: 1 / -1; }
+label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+input, select, textarea { font: 400 15px var(--body); color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0; }
+textarea { min-height: 80px; resize: vertical; }
+.count { font-size: 13px; color: var(--muted); padding-block: 4px 10px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 14px; padding-bottom: 40px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.head { display: flex; gap: 12px; align-items: center; }
+.avatar { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font: 800 18px var(--display); background: var(--gold-soft); color: var(--ink); }
+.name { font: 700 18px var(--display); margin: 0; line-height: 1.2; overflow-wrap: anywhere; }
+.where { font-size: 13px; color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--gold-soft); color: var(--ink); }
+.tag.home { background: transparent; border: 1px solid var(--green); color: var(--green); }
+.prices { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+.prices li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.prices li span:last-child { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.desc { margin: 0; font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn { font: 600 15px var(--body); border: 0; border-radius: 10px; padding: 11px 16px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn.wa { background: var(--green); color: var(--green-ink); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn.danger { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
+.phone { font-variant-numeric: tabular-nums; font-size: 14px; user-select: all; }
+
+.empty { border: 2px dashed var(--line); border-radius: var(--r); padding: 28px 20px; text-align: center; color: var(--muted); grid-column: 1 / -1; display: grid; gap: 10px; justify-items: center; }
+.empty strong { color: var(--ink); font-family: var(--display); font-size: 18px; }
+
+form { display: grid; gap: 14px; padding-block: 12px 48px; max-width: 640px; }
+fieldset { border: 1px solid var(--line); border-radius: var(--r); padding: 14px; margin: 0; display: grid; gap: 10px; background: var(--surface); min-width: 0; }
+legend { font: 700 16px var(--display); padding: 0 6px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.style-row { display: grid; grid-template-columns: auto 1fr 120px; gap: 10px; align-items: center; font-size: 14px; }
+.style-row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--green); }
+.style-row input[type="number"] { padding: 8px 10px; }
+.check { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--ink); }
+.check input { width: 20px; height: 20px; accent-color: var(--green); }
+.hint { font-size: 12px; color: var(--muted); font-weight: 400; }
+.notice { padding: 12px 14px; border-radius: 10px; background: var(--gold-soft); font-size: 14px; }
+.notice.err { background: transparent; border: 1.5px solid var(--red); color: var(--red); }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-weight: 600; z-index: 20; max-width: calc(100% - 32px); }
+
+@media (max-width: 520px) {
+  .filters, .row2 { grid-template-columns: 1fr; }
+  .style-row { grid-template-columns: auto 1fr 100px; }
+}
+@media (prefers-reduced-motion: no-preference) { .card { transition: border-color .15s; } .card:hover { border-color: var(--green); } }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Tresseuses du Cameroun</h1>
+    <p>Trouvez une tresseuse près de chez vous, voyez ses styles et ses prix, puis écrivez-lui directement sur WhatsApp.</p>
+  </div>
+</header>
+<div class="braid" aria-hidden="true"></div>
+
+<main class="wrap">
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-find" aria-selected="true" aria-controls="view-find">Trouver une tresseuse</button>
+    <button class="tab" role="tab" id="tab-me" aria-selected="false" aria-controls="view-me">Je suis tresseuse</button>
+  </div>
+
+  <section id="view-find" role="tabpanel" aria-labelledby="tab-find">
+    <div class="filters">
+      <label>Ville
+        <select id="f-ville"><option value="">Toutes les villes</option></select>
+      </label>
+      <label>Style
+        <select id="f-style"><option value="">Tous les styles</option></select>
+      </label>
+      <label class="full">Quartier ou nom
+        <input id="f-q" type="search" placeholder="Ex. Bonamoussadi, Mvog-Ada, Aïcha…">
+      </label>
+      <label class="check full"><input id="f-home" type="checkbox"> Se déplace à domicile uniquement</label>
+    </div>
+    <div class="count" id="count" aria-live="polite"></div>
+    <div class="grid" id="list">
+      <div class="empty" id="loading"><strong>Chargement des tresseuses…</strong></div>
+    </div>
+  </section>
+
+  <section id="view-me" role="tabpanel" aria-labelledby="tab-me" hidden>
+    <div id="me-status"></div>
+    <form id="form" novalidate>
+      <fieldset>
+        <legend>Votre profil</legend>
+        <label>Nom affiché <input id="p-nom" maxlength="60" required placeholder="Ex. Aïcha Tresses"></label>
+        <div class="row2">
+          <label>Ville <select id="p-ville" required></select></label>
+          <label>Quartier <input id="p-quartier" maxlength="60" placeholder="Ex. Akwa, Biyem-Assi"></label>
+        </div>
+        <label>Numéro WhatsApp
+          <input id="p-tel" inputmode="tel" maxlength="20" required placeholder="6 XX XX XX XX">
+          <span class="hint">9 chiffres, sans le +237. Les clientes vous écriront à ce numéro.</span>
+        </label>
+        <div class="row2">
+          <label>Années d'expérience <input id="p-exp" type="number" min="0" max="60" inputmode="numeric"></label>
+          <label>Disponibilité <input id="p-dispo" maxlength="80" placeholder="Ex. Lun–Sam, 8h–19h"></label>
+        </div>
+        <label class="check"><input id="p-home" type="checkbox"> Je me déplace à domicile</label>
+        <label>Présentation <textarea id="p-desc" maxlength="400" placeholder="Votre spécialité, votre salon, ce qui vous distingue…"></textarea></label>
+      </fieldset>
+      <fieldset>
+        <legend>Vos styles et prix (FCFA)</legend>
+        <span class="hint">Cochez ce que vous savez faire. Le prix est indicatif, à partir de.</span>
+        <div id="p-styles" style="display:grid;gap:8px"></div>
+      </fieldset>
+      <div id="form-msg"></div>
+      <div class="actions">
+        <button class="btn primary" type="submit" id="save">Publier mon profil</button>
+        <button class="btn danger" type="button" id="del" hidden>Retirer mon profil</button>
+      </div>
+      <div id="del-confirm" class="notice" hidden>
+        <p style="margin:0 0 8px">Votre profil ne sera plus visible par les clientes. Confirmer ?</p>
+        <div class="actions">
+          <button class="btn danger" type="button" id="del-yes">Oui, retirer</button>
+          <button class="btn ghost" type="button" id="del-no">Annuler</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</main>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const VILLES = ["Douala","Yaoundé","Bafoussam","Bamenda","Garoua","Maroua","Ngaoundéré","Bertoua","Ebolowa","Kribi","Limbé","Buea","Kumba","Dschang","Nkongsamba","Edéa","Autre ville"];
+const STYLES = ["Nattes collées","Box braids","Knotless braids","Vanilles (twists)","Fulani braids","Crochet braids","Tresses au fil","Tissage","Locks (pose / entretien)","Tresses enfants","Cornrows homme"];
+
+const $ = (id) => document.getElementById(id);
+function el(tag, attrs = {}, ...kids) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+  }
+  for (const k of kids) if (k) n.append(k);
+  return n;
+}
+const fcfa = (n) => new Intl.NumberFormat("fr-FR").format(n) + " FCFA";
+const fmtTel = (t) => t.replace(/(\d)(\d{2})(\d{2})(\d{2})(\d{2})/, "$1 $2 $3 $4 $5");
+function toast(msg) { const t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 2600); }
+
+// Remplir les listes
+for (const v of VILLES) { $("f-ville").append(el("option", { value: v, text: v })); $("p-ville").append(el("option", { value: v, text: v })); }
+for (const s of STYLES) $("f-style").append(el("option", { value: s, text: s }));
+STYLES.forEach((s, i) => {
+  $("p-styles").append(el("label", { class: "style-row", style: "color:var(--ink);font-weight:500" },
+    el("input", { type: "checkbox", id: "st-c-" + i, "data-style": s }),
+    el("span", { text: s }),
+    el("input", { type: "number", id: "st-p-" + i, min: "0", step: "500", inputmode: "numeric", placeholder: "Prix", "aria-label": "Prix pour " + s })
+  ));
+});
+
+// Onglets
+function show(which) {
+  const find = which === "find";
+  $("tab-find").setAttribute("aria-selected", find); $("tab-me").setAttribute("aria-selected", !find);
+  $("view-find").hidden = !find; $("view-me").hidden = find;
+  try { history.replaceState(null, "", find ? "#trouver" : "#tresseuse"); } catch {}
+}
+$("tab-find").onclick = () => show("find");
+$("tab-me").onclick = () => show("me");
+if (location.hash === "#tresseuse") show("me");
+
+// Données
+let all = [];
+function clean(d) {
+  if (!d || typeof d !== "object") return null;
+  const str = (x, n) => typeof x === "string" ? x.slice(0, n) : "";
+  const tel = str(d.tel, 20).replace(/\D/g, "");
+  if (!str(d.nom, 60) || tel.length !== 9) return null;
+  const styles = Array.isArray(d.styles) ? d.styles.filter(s => s && typeof s.nom === "string").slice(0, 30)
+    .map(s => ({ nom: s.nom.slice(0, 40), prix: Number.isFinite(s.prix) && s.prix > 0 ? Math.round(s.prix) : null })) : [];
+  return { nom: str(d.nom, 60), ville: str(d.ville, 40), quartier: str(d.quartier, 60), tel, exp: Number.isFinite(d.exp) ? d.exp : null,
+    dispo: str(d.dispo, 80), home: d.home === true, desc: str(d.desc, 400), styles, updatedAt: str(d.updatedAt, 40) };
+}
+
+function card(p) {
+  const initials = p.nom.split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+  const where = [p.quartier, p.ville].filter(Boolean).join(", ");
+  const tags = el("div", { class: "tags" });
+  if (p.home) tags.append(el("span", { class: "tag home", text: "Se déplace à domicile" }));
+  if (p.exp) tags.append(el("span", { class: "tag", text: p.exp + (p.exp > 1 ? " ans" : " an") + " d'expérience" }));
+  const prices = el("ul", { class: "prices" });
+  for (const s of p.styles) prices.append(el("li", {}, el("span", { text: s.nom }), el("span", { text: s.prix ? "dès " + fcfa(s.prix) : "sur devis" })));
+  const msg = "Bonjour " + p.nom + ", je vous ai trouvée sur Tresseuses du Cameroun. Je voudrais me faire tresser.";
+  const wa = el("a", { class: "btn wa", href: "https://wa.me/237" + p.tel + "?text=" + encodeURIComponent(msg), target: "_blank", rel: "noopener", text: "Écrire sur WhatsApp" });
+  const copy = el("button", { class: "btn ghost", type: "button", text: "Copier le numéro" });
+  copy.onclick = async () => {
+    try { await navigator.clipboard.writeText("+237" + p.tel); toast("Numéro copié"); }
+    catch { const r = document.createRange(); r.selectNodeContents(num); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Numéro sélectionné, copiez-le"); }
+  };
+  const num = el("span", { class: "phone", text: "+237 " + fmtTel(p.tel) });
+  return el("article", { class: "card" },
+    el("div", { class: "head" }, el("div", { class: "avatar", "aria-hidden": "true", text: initials }),
+      el("div", { style: "min-width:0" }, el("h2", { class: "name", text: p.nom }), el("div", { class: "where", text: where }))),
+    tags.childElementCount ? tags : null,
+    p.styles.length ? prices : null,
+    p.desc ? el("p", { class: "desc", text: p.desc }) : null,
+    p.dispo ? el("div", { class: "where", text: "Disponible : " + p.dispo }) : null,
+    el("div", { class: "actions" }, wa, copy), num);
+}
+
+function render() {
+  const v = $("f-ville").value, s = $("f-style").value, q = $("f-q").value.trim().toLowerCase(), home = $("f-home").checked;
+  const list = all.filter(p => (!v || p.ville === v) && (!s || p.styles.some(x => x.nom === s)) && (!home || p.home) &&
+    (!q || (p.nom + " " + p.quartier).toLowerCase().includes(q)));
+  const box = $("list"); box.replaceChildren();
+  if (!all.length) {
+    box.append(el("div", { class: "empty" }, el("strong", { text: "Aucune tresseuse inscrite pour l'instant" }),
+      el("span", { text: "Vous savez tresser ? Créez votre profil en 2 minutes et les clientes pourront vous contacter." }),
+      (() => { const b = el("button", { class: "btn primary", type: "button", text: "Je suis tresseuse" }); b.onclick = () => show("me"); return b; })()));
+  } else if (!list.length) {
+    box.append(el("div", { class: "empty" }, el("strong", { text: "Aucun résultat" }), el("span", { text: "Essayez une autre ville ou un autre style." })));
+  } else list.forEach(p => box.append(card(p)));
+  $("count").textContent = all.length ? list.length + " tresseuse" + (list.length > 1 ? "s" : "") + (v ? " à " + v : "") : "";
+}
+["f-ville", "f-style", "f-home"].forEach(id => $(id).addEventListener("change", render));
+$("f-q").addEventListener("input", render);
+
+function setStatus(node, text, err) { node.replaceChildren(text ? el("div", { class: "notice" + (err ? " err" : ""), text }) : ""); }
+
+(async () => {
+  const db = await claude.use("db");
+  const user = await claude.use("user");
+  if (!db) {
+    $("list").replaceChildren(el("div", { class: "empty" }, el("strong", { text: "Annuaire indisponible" }), el("span", { text: "Connectez-vous à claude.ai pour voir les tresseuses inscrites." })));
+    setStatus($("me-status"), "Connectez-vous à claude.ai pour créer votre profil.", true);
+    $("form").hidden = true;
+    return;
+  }
+  const col = db.collection("tresseuses");
+  let timer = setTimeout(() => { if (!all.length) $("list").replaceChildren(el("div", { class: "empty" }, el("strong", { text: "Connexion lente" }), el("span", { text: "L'annuaire ne répond pas encore. Vérifiez votre connexion internet." }))); }, 10000);
+  col.onSnapshot(snap => {
+    if (!snap.metadata.fromCache) clearTimeout(timer);
+    all = snap.docs.map(d => clean(d.data())).filter(Boolean).sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+    render();
+  }, () => { clearTimeout(timer); $("list").replaceChildren(el("div", { class: "empty" }, el("strong", { text: "Annuaire indisponible" }), el("span", { text: "Rechargez la page plus tard." }))); });
+
+  // Mon profil
+  const uid = user ? await user.id() : null;
+  const canWrite = user ? await user.can("data.write") : null;
+  if (!uid || canWrite === false) {
+    setStatus($("me-status"), "Votre accès actuel permet de consulter l'annuaire, pas d'y publier un profil. Demandez à la personne qui gère l'application de vous donner l'accès Contributeur.", true);
+    $("form").hidden = true;
+    return;
+  }
+  const mine = col.doc(uid);
+  const snap = await mine.get().catch(() => null);
+  const d = snap && snap.exists ? clean(snap.data()) : null;
+  if (d) {
+    $("p-nom").value = d.nom; $("p-ville").value = d.ville; $("p-quartier").value = d.quartier; $("p-tel").value = d.tel;
+    $("p-exp").value = d.exp ?? ""; $("p-dispo").value = d.dispo; $("p-home").checked = d.home; $("p-desc").value = d.desc;
+    STYLES.forEach((s, i) => { const f = d.styles.find(x => x.nom === s); if (f) { $("st-c-" + i).checked = true; $("st-p-" + i).value = f.prix ?? ""; } });
+    $("save").textContent = "Mettre à jour mon profil"; $("del").hidden = false;
+    setStatus($("me-status"), "Votre profil est en ligne. Modifiez-le ci-dessous quand vous voulez.");
+  }
+
+  $("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const tel = $("p-tel").value.replace(/\D/g, "").replace(/^237/, "");
+    const styles = STYLES.map((s, i) => $("st-c-" + i).checked ? { nom: s, prix: Number($("st-p-" + i).value) > 0 ? Math.round(Number($("st-p-" + i).value)) : null } : null).filter(Boolean);
+    const nom = $("p-nom").value.trim();
+    const err = !nom ? "Indiquez votre nom." : !/^[62]\d{8}$/.test(tel) ? "Le numéro doit avoir 9 chiffres et commencer par 6 (ex. 6 77 12 34 56)." : !styles.length ? "Cochez au moins un style que vous savez faire." : "";
+    if (err) return setStatus($("form-msg"), err, true);
+    const exp = $("p-exp").value === "" ? null : Math.max(0, Math.min(60, Math.round(Number($("p-exp").value))));
+    $("save").disabled = true;
+    try {
+      await mine.set({ nom, ville: $("p-ville").value, quartier: $("p-quartier").value.trim(), tel, exp, dispo: $("p-dispo").value.trim(),
+        home: $("p-home").checked, desc: $("p-desc").value.trim(), styles, updatedAt: new Date().toISOString() });
+      setStatus($("form-msg"), ""); setStatus($("me-status"), "Votre profil est en ligne. Modifiez-le ci-dessous quand vous voulez.");
+      $("save").textContent = "Mettre à jour mon profil"; $("del").hidden = false; toast("Profil publié");
+    } catch (x) {
+      setStatus($("form-msg"), x && x.code === "invalid_argument" ? "Votre accès ne permet pas de publier un profil." : "L'enregistrement a échoué. Vérifiez votre connexion et réessayez.", true);
+    } finally { $("save").disabled = false; }
+  });
+  $("del").onclick = () => { $("del-confirm").hidden = false; };
+  $("del-no").onclick = () => { $("del-confirm").hidden = true; };
+  $("del-yes").onclick = async () => {
+    try { await mine.delete(); $("form").reset(); $("del-confirm").hidden = true; $("del").hidden = true; $("save").textContent = "Publier mon profil";
+      setStatus($("me-status"), ""); toast("Profil retiré"); }
+    catch { setStatus($("form-msg"), "Le retrait a échoué. Réessayez.", true); }
+  };
+})();
+</script>
