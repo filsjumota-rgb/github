@@ -68,6 +68,13 @@ from public.tresseuses t
 left join public.avis a on a.tresseuse_id = t.id
 group by t.id;
 
+-- Autorisations explicites (nécessaires si "Accorder automatiquement l'accès API" est décoché).
+-- Les règles RLS ci-dessus restent appliquées en plus.
+grant usage on schema public to anon, authenticated;
+grant select on public.tresseuses to anon, authenticated;
+grant insert, update, delete on public.tresseuses to authenticated;
+grant select, insert on public.avis to anon, authenticated;
+grant usage, select on all sequences in schema public to anon, authenticated;
 grant select on public.tresseuses_notes to anon, authenticated;
 
 -- 4. Photos des réalisations (dossier = identifiant de la tresseuse)
