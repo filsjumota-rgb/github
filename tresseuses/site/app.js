@@ -44,6 +44,7 @@ function clean(d) {
     experience: Number.isFinite(d.experience) ? d.experience : null, dispo: str(d.dispo, 80), domicile: d.domicile === true,
     description: str(d.description, 400), styles, photos: Array.isArray(d.photos) ? d.photos.filter(x => typeof x === "string").slice(0, MAX_PHOTOS) : [],
     note: Number(d.note_moyenne) || 0, nbAvis: Number(d.nb_avis) || 0, updated_at: str(d.updated_at, 40),
+    premium: typeof d.premium_until === "string" && Date.parse(d.premium_until) > Date.now(),
   };
 }
 
@@ -98,6 +99,18 @@ function liveApi(sb) {
       const [vue, whatsapp, appel] = await Promise.all([count("vue"), count("whatsapp"), count("appel")]);
       return { vue, whatsapp, appel };
     },
+    // Premium : tout passe par la fonction serveur « premium » (paiement Campay vérifié côté serveur)
+    async premium(body) {
+      const { data, error } = await sb.functions.invoke("premium", { body });
+      if (error) {
+        let msg = "";
+        try { msg = (await error.context.json()).error; } catch {}
+        const e = new Error(msg || "Le service Premium ne répond pas.");
+        e.unavailable = !msg;
+        throw e;
+      }
+      return data;
+    },
   };
 }
 
@@ -117,6 +130,7 @@ function demoApi() {
   const withNotes = (r) => { const a = avis[r.id] || []; return { ...r, nb_avis: a.length, note_moyenne: a.length ? a.reduce((s, x) => s + x.note, 0) / a.length : 0 }; };
   const auths = new Set();
   const events = {};
+  let demoChecks = 0;
   const fire = () => auths.forEach(f => f(me));
   return {
     live: false,
@@ -137,6 +151,18 @@ function demoApi() {
     async deletePhoto() {},
     track(id, type) { (events[id] ||= { vue: 0, whatsapp: 0, appel: 0 })[type]++; },
     async stats(uid) { return { ...(events[uid] || { vue: 0, whatsapp: 0, appel: 0 }) }; },
+    // Démo : simule un paiement réussi après deux vérifications
+    async premium(body) {
+      const row = rows.find(x => x.id === (me && me.id));
+      if (body.action === "info") return { prix: 2000, jours: 30, premium_until: row && row.premium_until || null };
+      if (body.action === "start") { demoChecks = 0; return { reference: "demo-ref", ussd_code: "*126#", operator: "MTN" }; }
+      if (body.action === "check") {
+        if (++demoChecks < 2) return { statut: "PENDING" };
+        const until = new Date(Date.now() + 30 * 864e5).toISOString();
+        if (row) row.premium_until = until;
+        return { statut: "SUCCESSFUL", premium_until: until };
+      }
+    },
   };
 }
 
@@ -157,6 +183,7 @@ function card(p) {
       p.nbAvis ? el("div", { class: "rating" }, el("span", { class: "stars", text: stars(p.note) }), el("span", { text: p.note.toFixed(1).replace(".", ",") + " · " + p.nbAvis + " avis" }))
                : el("div", { class: "rating", text: "Pas encore d'avis" }),
       el("div", { class: "tags" },
+        p.premium ? el("span", { class: "tag premium", text: "★ Premium" }) : null,
         p.domicile ? el("span", { class: "tag home", text: "À domicile" }) : null,
         ...p.styles.slice(0, 3).map(s => el("span", { class: "tag", text: s.nom })),
         p.styles.length > 3 ? el("span", { class: "tag", text: "+" + (p.styles.length - 3) }) : null),
@@ -172,6 +199,7 @@ function renderList() {
     const price = (p) => s ? (p.styles.find(x => x.nom === s) || {}).prix || Infinity : minPrix(p) || Infinity;
     list.sort((a, b) => price(a) - price(b));
   }
+  list.sort((a, b) => b.premium - a.premium);  // les profils Premium passent en tête (tri stable)
   const box = $("list");
   if (!all.length) {
     box.replaceChildren(el("div", { class: "empty" }, el("strong", { text: "Aucune tresseuse inscrite pour l'instant" }),
@@ -270,7 +298,8 @@ async function renderDetail(id) {
       el("h1", { text: p.nom }),
       el("div", { class: "where", text: [p.quartier, p.ville].filter(Boolean).join(", ") }),
       p.nbAvis ? el("div", { class: "rating" }, el("span", { class: "stars", text: stars(p.note) }), el("span", { text: p.note.toFixed(1).replace(".", ",") + " sur 5 · " + p.nbAvis + " avis" })) : null,
-      el("div", { class: "tags" }, p.domicile ? el("span", { class: "tag home", text: "Se déplace à domicile" }) : null,
+      el("div", { class: "tags" }, p.premium ? el("span", { class: "tag premium", text: "★ Premium" }) : null,
+        p.domicile ? el("span", { class: "tag home", text: "Se déplace à domicile" }) : null,
         p.experience ? el("span", { class: "tag", text: p.experience + (p.experience > 1 ? " ans" : " an") + " d'expérience" }) : null)),
     el("div", { class: "cols" },
       el("div", { style: "display:grid;gap:18px;min-width:0" },
@@ -393,6 +422,7 @@ function fillForm(d) {
   $("del").hidden = !d; $("me-view").hidden = !d;
   $("me-view").href = "#t/" + encodeURIComponent(me.id);
   loadStats(!!d);
+  loadPremium(d);
   notice($("me-status"), d ? "Votre profil est en ligne. Partagez son lien sur votre statut WhatsApp pour avoir plus de clientes." : "Complétez votre profil puis publiez-le : il sera visible tout de suite.", d ? "ok" : "");
   drawThumbs();
 }
@@ -406,6 +436,62 @@ async function loadStats(show) {
     const s = await api.stats(me.id);
     $("stats-grid").replaceChildren(tile(String(s.vue), "Vues du profil"), tile(String(s.whatsapp), "Clics WhatsApp"), tile(String(s.appel), "Appels"));
   } catch { box.hidden = true; }  // table pas encore créée : on n'affiche rien
+}
+
+/* ---------- Premium (paiement Mobile Money via Campay) ---------- */
+let premiumPoll = null;
+async function loadPremium(profile) {
+  const box = $("premium"), body = $("premium-body");
+  clearTimeout(premiumPoll);
+  box.hidden = !profile;
+  if (!profile || !me) return;
+  body.replaceChildren(el("p", { class: "hint", text: "Chargement…" }));
+  let info;
+  try { info = await api.premium({ action: "info" }); }
+  catch { box.hidden = true; return; }  // service pas encore installé : on n'affiche rien
+  const active = info.premium_until && Date.parse(info.premium_until) > Date.now();
+  const prix = fcfa(info.prix);
+  const tel = el("input", { id: "pm-tel", inputmode: "tel", maxlength: "20", value: profile.tel });
+  const msg = el("div");
+  const btn = el("button", { class: "btn primary", type: "button", text: (active ? "Prolonger de " + info.jours + " jours" : "Passer Premium") + " · " + prix });
+  btn.onclick = () => payPremium(tel.value, msg, btn);
+  body.replaceChildren(
+    active
+      ? el("div", { class: "notice ok", text: "Premium actif jusqu'au " + dateFr(info.premium_until) + "." })
+      : el("ul", { class: "perks" },
+          el("li", { text: "Votre profil apparaît en tête des résultats dans votre ville." }),
+          el("li", { text: "Un badge « ★ Premium » sur votre fiche et dans la liste." }),
+          el("li", { text: prix + " pour " + info.jours + " jours, sans engagement ni renouvellement automatique." })),
+    el("label", {}, "Numéro MTN MoMo ou Orange Money qui paie", tel),
+    msg, btn);
+}
+
+async function payPremium(rawTel, msg, btn) {
+  const tel = String(rawTel).replace(/\D/g, "").replace(/^237(?=\d{9}$)/, "");
+  if (!/^6\d{8}$/.test(tel)) return notice(msg, "Numéro invalide : 9 chiffres commençant par 6.", "err");
+  btn.disabled = true;
+  let start;
+  try { start = await api.premium({ action: "start", telephone: tel }); }
+  catch (x) { btn.disabled = false; return notice(msg, x.message, "err"); }
+  notice(msg, "Une demande de paiement a été envoyée au " + fmtTel(tel) + ". Validez-la sur votre téléphone avec votre code secret Mobile Money." +
+    (start.ussd_code ? " Si rien ne s'affiche, composez " + start.ussd_code + "." : "") + " Gardez cette page ouverte.");
+  let tries = 0;
+  const check = async () => {
+    let r;
+    try { r = await api.premium({ action: "check", reference: start.reference }); } catch { r = { statut: "PENDING" }; }
+    if (r.statut === "SUCCESSFUL") {
+      toast("Premium activé"); loadList();
+      return loadPremium(clean(await api.mine(me.id)));
+    }
+    if (r.statut === "FAILED") { btn.disabled = false; return notice(msg, "Le paiement a échoué ou a été refusé. Aucun montant n'a été prélevé. Vous pouvez réessayer.", "err"); }
+    if (++tries < 36) premiumPoll = setTimeout(check, 5000);
+    else {
+      btn.disabled = false;
+      msg.replaceChildren(el("div", { class: "notice" }, "Paiement pas encore confirmé. Si vous l'avez validé, touchez « Vérifier ». ",
+        el("button", { class: "linkish", type: "button", text: "Vérifier", onclick: () => { tries = 30; btn.disabled = true; check(); } })));
+    }
+  };
+  premiumPoll = setTimeout(check, 5000);
 }
 
 $("form").addEventListener("submit", async (e) => {
