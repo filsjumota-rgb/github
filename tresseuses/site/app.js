@@ -99,6 +99,7 @@ function liveApi(sb) {
       const [vue, whatsapp, appel] = await Promise.all([count("vue"), count("whatsapp"), count("appel")]);
       return { vue, whatsapp, appel };
     },
+    async placesOffertes() { return must(await sb.rpc("places_offertes")); },
     // Premium : tout passe par la fonction serveur « premium » (paiement Campay vérifié côté serveur)
     async premium(body) {
       const { data, error } = await sb.functions.invoke("premium", { body });
@@ -151,6 +152,7 @@ function demoApi() {
     async deletePhoto() {},
     track(id, type) { (events[id] ||= { vue: 0, whatsapp: 0, appel: 0 })[type]++; },
     async stats(uid) { return { ...(events[uid] || { vue: 0, whatsapp: 0, appel: 0 }) }; },
+    async placesOffertes() { return 47; },
     // Démo : simule un paiement réussi après deux vérifications
     async premium(body) {
       const row = rows.find(x => x.id === (me && me.id));
@@ -438,6 +440,19 @@ async function loadStats(show) {
   } catch { box.hidden = true; }  // table pas encore créée : on n'affiche rien
 }
 
+/* ---------- Offre de lancement : Premium offert aux premières inscrites ---------- */
+async function loadOffre() {
+  const box = $("offre");
+  let n = 0;
+  try { n = Number(await api.placesOffertes()) || 0; } catch { n = 0; }  // offre pas installée ou terminée
+  box.hidden = n <= 0;
+  if (n <= 0) return;
+  box.replaceChildren(
+    el("span", {}, el("strong", { text: "Offre de lancement : " }),
+      "1 mois et 1 semaine de Premium offerts aux premières tresseuses inscrites. Plus que " + n + " place" + (n > 1 ? "s" : "") + "\u00a0!"),
+    el("a", { class: "btn primary", href: "#espace", text: "Je m'inscris" }));
+}
+
 /* ---------- Premium (paiement Mobile Money via Campay) ---------- */
 let premiumPoll = null;
 async function loadPremium(profile) {
@@ -498,9 +513,11 @@ $("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   $("save").disabled = true;
   try {
+    const wasNew = !hasProfile;
     if (await saveProfile(false)) {
       notice($("form-msg"), ""); fillForm(clean(await api.mine(me.id)) || clean({ ...readForm() }));
       toast("Profil publié"); loadList();
+      if (wasNew) loadOffre();
     }
   } catch (x) {
     notice($("form-msg"), "L'enregistrement a échoué : " + String(x && x.message || "vérifiez votre connexion").slice(0, 120), "err");
@@ -541,4 +558,5 @@ window.addEventListener("hashchange", route);
   me = await api.user().catch(() => null);
   route();
   loadList();
+  loadOffre();
 })();
