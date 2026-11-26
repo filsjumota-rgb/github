@@ -229,8 +229,17 @@ async function renderDetail(id) {
       reviews.unshift({ ...r, created_at: new Date().toISOString() }); drawReviews();
       rForm.replaceChildren(el("div", { class: "notice ok", text: "Merci ! Votre avis est publié." }));
       loadList();
-    } catch { notice(rMsg, "L'avis n'a pas pu être publié. Vérifiez votre connexion et réessayez.", "err"); rBtn.disabled = false; }
+    } catch (x) {
+      const code = x && x.code, m = String(x && x.message || "");
+      notice(rMsg, code === "42501" || /row-level security/i.test(m)
+        ? "Vous êtes connectée avec le compte de cette tresseuse : on ne peut pas laisser d'avis sur son propre profil."
+        : /fetch|network|Failed/i.test(m)
+          ? "L'avis n'a pas pu être publié. Vérifiez votre connexion internet et réessayez."
+          : "L'avis n'a pas pu être publié (" + m.slice(0, 100) + ").", "err");
+      rBtn.disabled = false;
+    }
   });
+  const ownProfile = !!(me && me.id === p.id);
 
   box.replaceChildren(el("div", { class: "detail" },
     el("a", { class: "back", href: "#", text: "← Toutes les tresseuses" }),
@@ -258,7 +267,11 @@ async function renderDetail(id) {
         } })),
       el("div", { style: "display:grid;gap:18px;min-width:0" },
         el("div", { class: "panel" }, el("h2", { text: "Avis des clientes" }), revList),
-        rForm))));
+        ownProfile
+          ? el("div", { class: "panel" }, el("h2", { text: "C'est votre profil" }),
+              el("p", { class: "hint", text: "Les avis sont laissés par vos clientes. Partagez le lien de votre profil pour qu'elles puissent vous noter." }),
+              el("a", { class: "btn ghost", href: "#espace", text: "Modifier mon profil" }))
+          : rForm))));
   window.scrollTo(0, 0);
 }
 
