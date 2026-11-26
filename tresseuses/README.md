@@ -26,7 +26,7 @@ Par défaut, Supabase envoie un e-mail de confirmation à chaque nouveau compte.
 ### 3. Publier le site (GitHub Pages)
 1. Sur GitHub, ouvrez le dépôt, puis **Settings → Pages → Source : GitHub Actions**.
 2. Fusionnez cette branche dans `main`. Le workflow `.github/workflows/tresseuses-pages.yml` publie automatiquement le dossier `site/`.
-3. L'adresse s'affiche dans **Actions** et dans **Settings → Pages**. Elle ressemble à `https://<compte>.github.io/github/`.
+3. L'adresse s'affiche dans **Actions** et dans **Settings → Pages**. Domaine personnalisé : `https://tresseuses237.com` (Namecheap, DNS vers GitHub Pages).
 
 Si vous voulez un nom de domaine à vous (par exemple `tresseuses.cm`), vous pouvez l'ajouter ensuite dans **Settings → Pages → Custom domain**.
 
