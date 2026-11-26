@@ -123,7 +123,10 @@ legend { font: 700 16px var(--display); padding: 0 6px; }
 .stat { border: 1px solid var(--line); border-radius: 10px; padding: 10px; display: grid; gap: 2px; min-width: 0; }
 .stat b { font: 800 26px var(--display); font-variant-numeric: tabular-nums; }
 .stat span { font-size: 12px; color: var(--muted); }
-#stats { margin-top: 12px; }
+#stats, #premium { margin-top: 12px; }
+.tag.premium { background: var(--gold); color: #1d1606; }
+.premium-panel { border-color: var(--gold); }
+.perks { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
 .legal { max-width: 720px; padding-block: 16px 48px; }
 .legal h1 { font: 800 clamp(26px, 5vw, 34px) / 1.15 var(--display); margin: 8px 0 4px; }
 .legal h2 { font: 700 19px var(--display); margin: 26px 0 6px; }

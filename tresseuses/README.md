@@ -32,6 +32,23 @@ Si vous voulez un nom de domaine à vous (par exemple `tresseuses.cm`), vous pou
 
 Vous pouvez aussi glisser le dossier `site/` sur https://app.netlify.com/drop.
 
+## Statistiques
+Exécuter une fois `supabase/02-statistiques.sql` dans le SQL Editor.
+
+## Premium (Mobile Money via Campay)
+Les tresseuses peuvent payer un abonnement Premium (en tête des résultats + badge « ★ Premium »). Le paiement est demandé et **vérifié côté serveur** par la fonction `supabase/functions/premium/index.ts` ; une tresseuse ne peut pas s'accorder le Premium elle-même.
+
+1. Exécuter `supabase/03-premium.sql` dans le SQL Editor.
+2. Supabase → **Edge Functions → Deploy a new function → Via Editor** : nom `premium`, coller le contenu de `supabase/functions/premium/index.ts`, **Deploy**.
+3. Supabase → **Edge Functions → Secrets**, ajouter :
+   - `CAMPAY_USERNAME` et `CAMPAY_PASSWORD` : identifiants de l'application, dans le tableau de bord Campay (rubrique des applications / clés API) ;
+   - `CAMPAY_BASE` : `https://demo.campay.net/api` pour les tests, puis `https://www.campay.net/api` en réel ;
+   - `PREMIUM_PRIX` : le prix en FCFA (petit montant pour les tests, par ex. 25) ;
+   - `PREMIUM_JOURS` : `30`.
+4. Tester depuis l'espace tresseuse, encart « ★ Premium ». Tant que la fonction n'est pas installée, l'encart reste masqué.
+
+Ne jamais mettre les identifiants Campay dans le code ni dans `config.js` : seulement dans les secrets Supabase.
+
 ## Modération
 Le propriétaire du projet Supabase voit et peut supprimer tous les profils et avis dans **Table Editor** (tables `tresseuses` et `avis`). N'importe qui peut laisser un avis sans compte. Le site empêche un même téléphone d'en laisser deux à la même tresseuse, mais ce n'est pas une protection forte : surveillez les avis au début.
 
