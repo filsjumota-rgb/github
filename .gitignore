@@ -21,3 +21,5 @@ out/tiktok-lancement/hits.json
 out/tiktok-lancement/*/
 out/tiktok-lancement/*.png
 out/tiktok-lancement/
+out/tiktok-bilingue/
+tiktok-bilingue/audio/*.wav
