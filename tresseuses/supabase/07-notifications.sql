@@ -24,7 +24,8 @@ create or replace function public.prevenir(p_type text, p_id text) returns void
 language plpgsql security definer set search_path = public as $$
 begin
   perform net.http_post(
-    url     := 'https://exvlootzyvolkkeoxdaz.supabase.co/functions/v1/notifier',
+    -- nom réel de la fonction dans Supabase : « notifier- » (avec un tiret)
+    url     := 'https://exvlootzyvolkkeoxdaz.supabase.co/functions/v1/notifier-',
     body    := jsonb_build_object('type', p_type, 'id', p_id),
     headers := '{"Content-Type": "application/json"}'::jsonb
   );
