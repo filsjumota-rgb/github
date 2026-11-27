@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://exvlootzyvolkkeoxdaz.supabase.co; connect-src 'self' https://exvlootzyvolkkeoxdaz.supabase.co wss://exvlootzyvolkkeoxdaz.supabase.co; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tresseuses du Cameroun</title>
 <meta name="description" content="Trouvez une tresseuse près de chez vous au Cameroun : styles, prix, photos, avis, et contact direct sur WhatsApp.">
@@ -68,8 +70,8 @@
         <h2 id="auth-title">Créer mon compte tresseuse</h2>
         <p class="hint">Gratuit. Votre compte sert seulement à modifier votre profil.</p>
         <label>Adresse e-mail <input id="a-email" type="email" autocomplete="email" required></label>
-        <label>Mot de passe <input id="a-pass" type="password" autocomplete="new-password" minlength="6" required>
-          <span class="hint">6 caractères minimum.</span></label>
+        <label>Mot de passe <input id="a-pass" type="password" autocomplete="new-password" minlength="8" required>
+          <span class="hint">8 caractères minimum, avec des lettres et des chiffres.</span></label>
         <label class="check" id="a-cgu-row"><input id="a-cgu" type="checkbox"> <span>J'accepte les <a href="cgu.html" target="_blank" rel="noopener">conditions d'utilisation</a> et la <a href="confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a></span></label>
         <div id="auth-msg"></div>
         <button class="btn primary" type="submit" id="auth-submit">Créer mon compte</button>
@@ -151,7 +153,7 @@
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js" integrity="sha384-uteMfOloLDGt042uDz+xHGF3ym63/WQ6rFq7murQRG8Ih7QrXGEGNtWd8688sb4O" crossorigin="anonymous"></script>
 <script src="app.js"></script>
 </body>
 </html>

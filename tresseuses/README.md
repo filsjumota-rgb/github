@@ -54,3 +54,10 @@ Le propriétaire du projet Supabase voit et peut supprimer tous les profils et a
 
 ## Sécurité
 La clé `anon` est publique par conception. Les règles de `schema.sql` font que tout le monde peut lire les profils et les avis, mais chaque tresseuse ne peut créer, modifier ou supprimer que son propre profil et ses propres photos.
+
+## Sécurité
+- Règles d'accès (RLS) sur toutes les tables : chaque tresseuse ne modifie que son profil et ses photos ; abonnements et paiements ne sont écrits que par la fonction serveur `premium`.
+- `supabase/06-securite.sql` : dates gérées par le serveur, photos limitées au dossier de la tresseuse, limites anti-spam sur les avis et les statistiques.
+- Fonction `premium` : paiement vérifié auprès de Campay avant d'accorder le Premium ; au plus 3 demandes de paiement en 10 minutes et 10 par jour par compte.
+- Site : politique de sécurité du contenu (CSP), vérification d'intégrité (SRI) de la bibliothèque Supabase, aucun script en ligne, mots de passe de 8 caractères minimum avec lettres et chiffres.
+- Ne jamais mettre la clé `service_role`, la clé secrète Supabase ou les identifiants Campay dans le site : uniquement dans les secrets Supabase.
