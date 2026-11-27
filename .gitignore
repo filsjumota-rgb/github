@@ -23,3 +23,5 @@ out/tiktok-lancement/*.png
 out/tiktok-lancement/
 out/tiktok-bilingue/
 tiktok-bilingue/audio/*.wav
+out/tiktok-minute/
+tiktok-minute/audio/*.wav
