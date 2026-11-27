@@ -21,7 +21,10 @@ img { max-width: 100%; display: block; }
 .wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
 
 .hero { background: var(--green); color: var(--green-ink); padding-top: calc(env(safe-area-inset-top) + 26px); }
-.hero .wrap { padding-block: 0 20px; display: grid; gap: 8px; }
+.hero .wrap { padding-block: 0 20px; display: grid; gap: 8px; position: relative; }
+.lang-btn { position: absolute; top: -10px; right: max(16px, env(safe-area-inset-right)); font: 700 14px var(--body); letter-spacing: .04em; color: var(--green-ink); background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.55); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.lang-btn:hover { background: rgba(255,255,255,.22); }
+.brand { padding-right: 64px; }
 .brand { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 6vw, 44px); line-height: 1.05; color: inherit; text-decoration: none; letter-spacing: -0.01em; }
 .brand { display: flex; align-items: center; gap: 14px; }
 .brand .logo { flex: none; width: clamp(44px, 9vw, 60px); height: auto; border-radius: 50%; box-shadow: 0 0 0 3px var(--gold); }
