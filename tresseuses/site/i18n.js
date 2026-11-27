@@ -59,8 +59,8 @@ const I18N_EN = {
   "Annuler": "Cancel",
   "Tresseuses du Cameroun · Annuaire gratuit · Les prix sont indiqués par les tresseuses.":
     "Tresseuses du Cameroun · Free directory · Prices are set by the braiders.",
-  "Conditions d'utilisation": "Terms of use (in French)",
-  "Confidentialité": "Privacy (in French)",
+  "Conditions d'utilisation": "Terms of use",
+  "Confidentialité": "Privacy",
   // Exemples dans les champs
   "Ex. Bonamoussadi, Mvog-Ada, Aïcha…": "e.g. Molyko, Bonamoussadi, Aïcha…",
   "Ex. Aïcha Tresses": "e.g. Aïcha Braids",
@@ -246,6 +246,9 @@ function translateDom(root) {
     const raw = n.nodeValue, key = raw.trim();
     if (key && I18N_EN[key]) n.nodeValue = raw.replace(key, I18N_EN[key]);
   }
+  // Liens vers les pages légales : version anglaise
+  const LEGAL_EN = { "cgu.html": "cgu-en.html", "confidentialite.html": "privacy.html" };
+  root.querySelectorAll("a[href]").forEach(a => { const h = a.getAttribute("href"); if (LEGAL_EN[h]) a.setAttribute("href", LEGAL_EN[h]); });
   for (const a of ["placeholder", "aria-label", "alt", "title"]) {
     root.querySelectorAll("[" + a + "]").forEach(e => { const v = e.getAttribute(a); if (I18N_EN[v]) e.setAttribute(a, I18N_EN[v]); });
   }
