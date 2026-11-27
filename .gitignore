@@ -13,3 +13,10 @@ out/facebook/video_*.mp4
 out/facebook/hits.json
 out/facebook/*/
 out/facebook/*.png
+tiktok-lancement/audio/*.wav
+tiktok-lancement/audio/vo/*.wav
+out/tiktok-lancement/stills/
+out/tiktok-lancement/video_*.mp4
+out/tiktok-lancement/hits.json
+out/tiktok-lancement/*/
+out/tiktok-lancement/*.png
