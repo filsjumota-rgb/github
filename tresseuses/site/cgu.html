@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://exvlootzyvolkkeoxdaz.supabase.co; connect-src 'self' https://exvlootzyvolkkeoxdaz.supabase.co wss://exvlootzyvolkkeoxdaz.supabase.co; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Conditions d'utilisation · Tresseuses du Cameroun</title>
 <meta name="theme-color" content="#0f5a3a">
@@ -64,12 +66,6 @@
 </main>
 <footer class="wrap foot">Tresseuses du Cameroun · <a href="./">Annuaire</a> · <a href="confidentialite.html">Confidentialité</a></footer>
 <script src="config.js"></script>
-<script>
-  (function () {
-    var c = (window.TRESSES_CONFIG || {}).contact;
-    if (c) document.getElementById("contact").textContent = c;
-    else document.getElementById("contact-line").hidden = true;
-  })();
-</script>
+<script src="legal.js"></script>
 </body>
 </html>

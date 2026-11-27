@@ -348,7 +348,7 @@ $("auth-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = $("a-email").value.trim(), pass = $("a-pass").value;
   if (!/^\S+@\S+\.\S+$/.test(email)) return notice($("auth-msg"), "Adresse e-mail invalide.", "err");
-  if (pass.length < 6) return notice($("auth-msg"), "Le mot de passe doit faire au moins 6 caractères.", "err");
+  if (signupMode && (pass.length < 8 || !/[a-zA-Z]/.test(pass) || !/[0-9]/.test(pass))) return notice($("auth-msg"), "Le mot de passe doit faire au moins 8 caractères, avec des lettres et des chiffres.", "err");
   if (signupMode && !$("a-cgu").checked) return notice($("auth-msg"), "Cochez la case pour accepter les conditions d'utilisation.", "err");
   $("auth-submit").disabled = true;
   try {

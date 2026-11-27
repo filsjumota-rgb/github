@@ -73,6 +73,17 @@ Deno.serve(async (req) => {
       const { data: profil } = await admin.from("tresseuses").select("id").eq("id", user.id).maybeSingle();
       if (!profil) return json({ error: "Publiez d'abord votre profil." }, 400);
 
+      // Anti-abus : pas plus de 3 demandes de paiement en 10 minutes, ni 10 par jour,
+      // pour qu'un compte ne puisse pas envoyer des demandes Mobile Money en boucle à n'importe quel numéro.
+      const depuis = (min: number) => new Date(Date.now() - min * 60000).toISOString();
+      const { count: recent } = await admin.from("paiements").select("reference", { count: "exact", head: true })
+        .eq("tresseuse_id", user.id).gte("created_at", depuis(10));
+      const { count: jour } = await admin.from("paiements").select("reference", { count: "exact", head: true })
+        .eq("tresseuse_id", user.id).gte("created_at", depuis(1440));
+      if ((recent ?? 0) >= 3 || (jour ?? 0) >= 10) {
+        return json({ error: "Trop de demandes de paiement. Attendez quelques minutes avant de réessayer." }, 429);
+      }
+
       const token = await campayToken();
       const r = await fetch(BASE + "/collect/", {
         method: "POST",
