@@ -3,8 +3,8 @@
 -- Peut être relancé sans risque.
 --
 -- Ce script ne change rien au fonctionnement du site : il demande seulement à la base
--- de prévenir la fonction « notifier » après chaque nouvelle inscription, nouvel avis
--- ou paiement réussi, et chaque soir à 20 h (heure du Cameroun) pour le résumé.
+-- de prévenir la fonction « notifier » après chaque nouvelle inscription, nouvel avis,
+-- paiement réussi, consultation de profil ou clic WhatsApp / Appeler, et chaque soir à 20 h (heure du Cameroun) pour le résumé.
 -- L'envoi se fait en arrière-plan : si Telegram ne répond pas, l'inscription
 -- (ou l'avis, ou le paiement) est quand même enregistrée normalement.
 
@@ -49,6 +49,14 @@ begin
   end if;
   return null;
 end $$;
+
+create or replace function public.notif_evenement() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin perform prevenir('evenement', new.id::text); return null; end $$;
+
+drop trigger if exists notif_evenement on public.evenements;
+create trigger notif_evenement after insert on public.evenements
+  for each row execute function public.notif_evenement();
 
 drop trigger if exists notif_tresseuse on public.tresseuses;
 create trigger notif_tresseuse after insert on public.tresseuses

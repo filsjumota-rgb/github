@@ -4,6 +4,8 @@
 //   - une tresseuse crée son profil        { type: "tresseuse", id: <uuid> }
 //   - une cliente laisse un avis           { type: "avis",      id: <nombre> }
 //   - un paiement Premium est réussi       { type: "paiement",  id: <référence Campay> }
+//   - une cliente consulte un profil, touche WhatsApp ou Appeler   { type: "evenement", id: <nombre> }
+//     (vues : au plus 1 message par profil toutes les 30 min ; WhatsApp / appel : toutes les 5 min)
 //   - chaque soir : le résumé de la journée { type: "resume" }
 // Elle est appelée par la base de données (script 07-notifications.sql), jamais par le site.
 //
@@ -93,6 +95,24 @@ async function nouveauPaiement(ref: string) {
   );
 }
 
+async function nouvelEvenement(id: string) {
+  const { data: e } = await db.from("evenements").select("tresseuse_id, type, created_at").eq("id", Number(id)).maybeSingle();
+  if (!e || !recent(e.created_at)) return;
+  // Regroupement anti-avalanche : une fenêtre de 30 min pour les vues, 5 min pour les contacts
+  const minutes = e.type === "vue" ? 30 : 5;
+  const fenetre = Math.floor(Date.now() / (minutes * 60000));
+  if (!(await reserver(`${e.type}-${e.tresseuse_id}-${fenetre}`))) return;
+  const nom = await nomTresseuse(e.tresseuse_id);
+  const depuis = new Date(Date.now() - 3600 * 1000).toISOString();
+  const n = await compter("evenements", (q) => q.eq("tresseuse_id", e.tresseuse_id).eq("type", e.type).gte("created_at", depuis));
+  const texte = e.type === "vue"
+    ? `👀 Le profil de ${nom} a été consulté (${n} fois dans la dernière heure)`
+    : e.type === "whatsapp"
+    ? `💬 Une cliente a touché « WhatsApp » sur le profil de ${nom} (${n} fois dans la dernière heure)`
+    : `📞 Une cliente a touché « Appeler » sur le profil de ${nom} (${n} fois dans la dernière heure)`;
+  await telegram(texte);
+}
+
 async function resume() {
   // Date du jour à Douala (UTC+1)
   const douala = new Date(Date.now() + 3600 * 1000);
@@ -130,6 +150,7 @@ Deno.serve(async (req) => {
     if (body.type === "tresseuse" && id) await nouvelleTresseuse(id);
     else if (body.type === "avis" && /^\d+$/.test(id)) await nouvelAvis(id);
     else if (body.type === "paiement" && id) await nouveauPaiement(id);
+    else if (body.type === "evenement" && /^\d+$/.test(id)) await nouvelEvenement(id);
     else if (body.type === "resume") await resume();
     else if (body.type === "test") {
       // Message d'essai : au plus un toutes les 10 minutes

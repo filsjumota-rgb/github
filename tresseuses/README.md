@@ -64,11 +64,11 @@ La clé `anon` est publique par conception. Les règles de `schema.sql` font que
 
 ## Notifications Telegram (administratrice)
 
-Nouvelle inscription, nouvel avis, paiement Premium réussi, et un résumé chaque soir à 20 h.
+Nouvelle inscription, nouvel avis, paiement Premium réussi, profil consulté (regroupé par 30 min), clic WhatsApp ou Appeler (regroupé par 5 min), et un résumé chaque soir à 20 h.
 
 1. Telegram : créer un robot avec **@BotFather** (`/newbot`), garder le jeton ; écrire « bonjour » au robot ; obtenir son numéro de discussion avec **@userinfobot**.
 2. Supabase → **Edge Functions → Deploy a new function → Via Editor** : nom `notifier`, coller `supabase/functions/notifier/index.ts`, **Deploy**, puis dans ses réglages désactiver **Verify JWT** (la base l'appelle sans jeton ; la fonction relit tout elle-même).
 3. Supabase → **Edge Functions → Secrets** : `TELEGRAM_BOT_TOKEN` et `TELEGRAM_CHAT_ID`.
 4. Supabase → **SQL Editor** : exécuter `supabase/07-notifications.sql`. Un message d'essai arrive sur Telegram.
 
-Pour arrêter : `drop trigger notif_tresseuse on tresseuses; drop trigger notif_avis on avis; drop trigger notif_paiement on paiements; select cron.unschedule('resume-quotidien');`
+Pour arrêter : `drop trigger notif_tresseuse on tresseuses; drop trigger notif_avis on avis; drop trigger notif_paiement on paiements; drop trigger notif_evenement on evenements; select cron.unschedule('resume-quotidien');`
