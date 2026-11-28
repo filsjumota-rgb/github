@@ -198,17 +198,30 @@ const I18N_EN = {
 
 // Noms des styles : la valeur enregistrée reste en français, seul l'affichage change
 const STYLE_EN = {
-  "Nattes collées": "Cornrows",
+  "Tresses collées (nattes)": "Cornrows (tresses collées)",
+  "Natte américaine": "American cornrows (natte américaine)",
+  "Rasta américaine": "American rasta braids",
+  "Rasta classique": "Classic rasta braids",
+  "Passe mèche classique": "Classic feed-in braids (passe mèche)",
+  "Vanille (twist)": "Twists (vanille)",
+  "Bantu knots": "Bantu knots",
+  "Crochet braids": "Crochet braids",
   "Box braids": "Box braids",
   "Knotless braids": "Knotless braids",
-  "Vanilles (twists)": "Twists",
   "Fulani braids": "Fulani braids",
-  "Crochet braids": "Crochet braids",
   "Tresses au fil": "Threading (tresses au fil)",
-  "Tissage": "Weave",
-  "Locks (pose / entretien)": "Locs (install / retwist)",
   "Tresses enfants": "Kids' braids",
   "Cornrows homme": "Men's cornrows",
+  "Tissage": "Weave",
+  "Lace frontale": "Lace frontal",
+  "Pose greffe": "Hair extensions (greffe)",
+  "Locks (pose / entretien)": "Locs (install / retwist)",
+  "Chignon": "Bun (chignon)",
+  "Coiffure au vent": "Natural blowout (coiffure au vent)",
+  "Curly": "Curly",
+  "Coupe": "Haircut",
+  "Brushing": "Blow-dry (brushing)",
+  "Shampoing": "Shampoo / wash",
 };
 
 const LANG = (() => {

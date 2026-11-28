@@ -2,7 +2,18 @@
 // Tresseuses du Cameroun — application (vanilla JS, aucune compilation nécessaire)
 
 const VILLES = ["Douala","Yaoundé","Bafoussam","Bamenda","Garoua","Maroua","Ngaoundéré","Bertoua","Ebolowa","Kribi","Limbé","Buea","Kumba","Dschang","Nkongsamba","Edéa","Autre ville"];
-const STYLES = ["Nattes collées","Box braids","Knotless braids","Vanilles (twists)","Fulani braids","Crochet braids","Tresses au fil","Tissage","Locks (pose / entretien)","Tresses enfants","Cornrows homme"];
+const STYLES = [
+  // Tresses
+  "Tresses collées (nattes)", "Natte américaine", "Rasta américaine", "Rasta classique", "Passe mèche classique",
+  "Vanille (twist)", "Bantu knots", "Crochet braids", "Box braids", "Knotless braids", "Fulani braids",
+  "Tresses au fil", "Tresses enfants", "Cornrows homme",
+  // Pose et coiffure
+  "Tissage", "Lace frontale", "Pose greffe", "Locks (pose / entretien)", "Chignon", "Coiffure au vent", "Curly",
+  // Soins et coupe
+  "Coupe", "Brushing", "Shampoing",
+];
+// Anciens noms -> nouveaux noms : les profils déjà enregistrés suivent automatiquement
+const STYLE_ALIAS = { "Nattes collées": "Tresses collées (nattes)", "Vanilles (twists)": "Vanille (twist)" };
 const MAX_PHOTOS = 8;
 
 /* ---------- Petits outils ---------- */
@@ -39,7 +50,7 @@ function clean(d) {
   const tel = str(d.tel, 20).replace(/\D/g, "");
   if (!str(d.nom, 60) || tel.length !== 9) return null;
   const styles = Array.isArray(d.styles) ? d.styles.filter(s => s && typeof s.nom === "string").slice(0, 30)
-    .map(s => ({ nom: s.nom.slice(0, 40), prix: Number.isFinite(s.prix) && s.prix > 0 ? Math.round(s.prix) : null })) : [];
+    .map(s => ({ nom: (STYLE_ALIAS[s.nom] || s.nom).slice(0, 40), prix: Number.isFinite(s.prix) && s.prix > 0 ? Math.round(s.prix) : null })) : [];
   return {
     id: String(d.id), nom: str(d.nom, 60), ville: str(d.ville, 40), quartier: str(d.quartier, 60), tel,
     experience: Number.isFinite(d.experience) ? d.experience : null, dispo: str(d.dispo, 80), domicile: d.domicile === true,
@@ -121,9 +132,9 @@ function demoApi() {
   const now = Date.now();
   const rows = [
     { id: "demo-1", nom: "Exemple – Aïcha Tresses", ville: "Douala", quartier: "Bonamoussadi", tel: "690000001", experience: 8, dispo: "Lun–Sam, 8h–19h", domicile: true,
-      description: "Spécialiste knotless et fulani. Mèches fournies sur demande.", styles: [{ nom: "Knotless braids", prix: 15000 }, { nom: "Fulani braids", prix: 12000 }, { nom: "Nattes collées", prix: 3000 }], photos: [], updated_at: new Date(now - 864e5).toISOString() },
+      description: "Spécialiste knotless et fulani. Mèches fournies sur demande.", styles: [{ nom: "Knotless braids", prix: 15000 }, { nom: "Fulani braids", prix: 12000 }, { nom: "Tresses collées (nattes)", prix: 3000 }], photos: [], updated_at: new Date(now - 864e5).toISOString() },
     { id: "demo-2", nom: "Exemple – Salon Mama Ngono", ville: "Yaoundé", quartier: "Mvog-Ada", tel: "677000002", experience: 15, dispo: "Tous les jours", domicile: false,
-      description: "Salon familial. Tresses au fil, vanilles et coiffures pour enfants.", styles: [{ nom: "Tresses au fil", prix: 2500 }, { nom: "Vanilles (twists)", prix: 8000 }, { nom: "Tresses enfants", prix: 2000 }], photos: [], updated_at: new Date(now - 3 * 864e5).toISOString() },
+      description: "Salon familial. Tresses au fil, vanilles et coiffures pour enfants.", styles: [{ nom: "Tresses au fil", prix: 2500 }, { nom: "Vanille (twist)", prix: 8000 }, { nom: "Tresses enfants", prix: 2000 }], photos: [], updated_at: new Date(now - 3 * 864e5).toISOString() },
     { id: "demo-3", nom: "Exemple – Brenda Braids", ville: "Buea", quartier: "Molyko", tel: "650000003", experience: 4, dispo: "Weekends", domicile: true,
       description: "Box braids et crochet, rapide et soigné.", styles: [{ nom: "Box braids", prix: 10000 }, { nom: "Crochet braids", prix: 7000 }], photos: [], updated_at: new Date(now - 6 * 864e5).toISOString() },
   ];
