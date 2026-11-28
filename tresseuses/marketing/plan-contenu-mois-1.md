@@ -2,6 +2,8 @@
 
 Lien à mettre partout : **tresseuses237.com** (anglais : tresseuses237.com/?lang=en)
 
+Réseaux : TikTok **@tresseuses237** · Facebook **Tresseuses du Cameroun**
+
 ## Règles simples (à relire avant chaque publication)
 
 - **Jamais de faux chiffres ni de faux témoignages.** Remplace les [crochets] par de vraies informations : le nom d'une vraie tresseuse inscrite, le vrai nombre de places restantes (il apparaît dans tes notifications Telegram).
@@ -33,6 +35,7 @@ Pas d'intermédiaire. La cliente te paie directement, comme d'habitude.
 👉 tresseuses237.com → « Je suis tresseuse »
 
 Partage à une tresseuse que tu connais 🙏🏾
+📱 Suis-nous aussi sur TikTok : @tresseuses237
 ```
 
 ### Lundi : TikTok
@@ -186,7 +189,8 @@ Plus besoin de demander partout « qui tresse bien ici ? » 😂 tresseuses237.c
 👀 [nombre] profils consultés
 💬 [nombre] clientes qui ont écrit sur WhatsApp
 
-Merci à toutes ! 🙏🏾 Il reste [nombre] places pour le Premium offert.
+Merci à toutes ! 🙏🏾 Suivez-nous sur TikTok : @tresseuses237
+Il reste [nombre] places pour le Premium offert.
 👉 tresseuses237.com
 ```
 
